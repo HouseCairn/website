@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   build:
+    name: Build site
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -48,11 +49,12 @@ jobs:
           path: dist
 
   deploy:
+    name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
+      pages: write      # publish the artifact to the Pages site (needed by deploy-pages)
+      id-token: write   # OIDC token that deploy-pages exchanges for a Pages deployment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
