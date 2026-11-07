@@ -32,8 +32,8 @@ const alternates =
       ];
 const ogImage = new URL(`/og/og-${lang}.png`, site).href;
 const ogAlt = lang === "en"
-  ? "Housecairn logo with the tagline: what to do in the house, where, when, with what, and for how much."
-  : "Logo Housecairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
+  ? "HouseCairn logo with the tagline: what to do in the house, where, when, with what, and for how much."
+  : "Logo HouseCairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
 const switchHref = localePath(other, slug ?? "");
 const home = localePath(lang);
 ---
@@ -56,7 +56,7 @@ const home = localePath(lang);
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Housecairn" />
+    <meta property="og:site_name" content="HouseCairn" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -75,7 +75,7 @@ const home = localePath(lang);
     <header class="site-header">
       <div class="wrap header-inner">
         <a class="brand" href={home}>
-          <img src="/brand/housecairn-logo.svg" width="164" height="48" alt="Housecairn" />
+          <img src="/brand/housecairn-logo.svg" width="167" height="48" alt="HouseCairn" />
         </a>
         <nav class="nav" aria-label={t.nav.menu}>
           <ul>
@@ -99,7 +99,7 @@ const home = localePath(lang);
     <footer class="site-footer">
       <div class="wrap footer-inner">
         <div class="footer-brand">
-          <img src="/brand/housecairn-logo-fond-sombre.svg" width="164" height="48" alt="Housecairn" loading="lazy" />
+          <img src="/brand/housecairn-logo-fond-sombre.svg" width="167" height="48" alt="HouseCairn" loading="lazy" />
           <p>{t.footer.by}</p>
           <p>{t.footer.license}</p>
         </div>

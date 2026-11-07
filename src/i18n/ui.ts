@@ -117,16 +117,16 @@ export const ui: Record<Lang, Dict> = {
     switchLabel: "Français",
     switchAria: "Lire cette page en français",
     home: {
-      title: "Housecairn: home maintenance and renovation, self-hosted",
+      title: "HouseCairn: home maintenance and renovation, self-hosted",
       description:
-        "Housecairn is a free and open-source, self-hosted web app for your house: what to do, where, when, with what, and for how much. Recurring maintenance and renovation projects, room by room.",
+        "HouseCairn is a free and open-source, self-hosted web app for your house: what to do, where, when, with what, and for how much. Recurring maintenance and renovation projects, room by room.",
       eyebrow: "Free and open-source · Self-hosted",
       h1: "What to do in the house, where, when, with what, and for how much.",
       lead:
-        "Housecairn keeps track of recurring maintenance, like the smoke detector battery or the ventilation filter, and of one-off renovation projects, like repainting the living room or redoing the bathroom. Room by room, for the whole household.",
+        "HouseCairn keeps track of recurring maintenance, like the smoke detector battery or the ventilation filter, and of one-off renovation projects, like repainting the living room or redoing the bathroom. Room by room, for the whole household.",
       statusStrong: "Early development.",
       status:
-        "Housecairn is not usable yet. This page describes the planned first version (v1).",
+        "HouseCairn is not usable yet. This page describes the planned first version (v1).",
       ctaSource: "Follow the code on GitHub",
       ctaRoadmap: "See the roadmap",
       heroFigure:
@@ -134,7 +134,7 @@ export const ui: Record<Lang, Dict> = {
       problem: {
         h2: "A house is a long list nobody keeps",
         intro:
-          "Maintenance gets forgotten, references get lost, and renovation budgets live in someone's head. Housecairn puts it all in one place you host yourself.",
+          "Maintenance gets forgotten, references get lost, and renovation budgets live in someone's head. HouseCairn puts it all in one place you host yourself.",
         points: [
           {
             title: "Recurring tasks",
@@ -220,11 +220,11 @@ export const ui: Record<Lang, Dict> = {
       integrations: {
         h2: "Optional integrations",
         intro:
-          "All integrations are off by default. Housecairn works fully without them.",
+          "All integrations are off by default. HouseCairn works fully without them.",
         list: [
           {
             title: "Home Assistant",
-            text: "Import rooms, let sensors arm tasks (a low battery, for example), and relay notifications. Housecairn never holds a Home Assistant token: Home Assistant pushes to it.",
+            text: "Import rooms, let sensors arm tasks (a low battery, for example), and relay notifications. HouseCairn never holds a Home Assistant token: Home Assistant pushes to it.",
           },
           {
             title: "Paperless-ngx",
@@ -232,7 +232,7 @@ export const ui: Record<Lang, Dict> = {
           },
           {
             title: "Sure",
-            text: "Match an existing transaction to take its amount. Housecairn never creates transactions.",
+            text: "Match an existing transaction to take its amount. HouseCairn never creates transactions.",
           },
         ],
         later: "Later: an MCP server and outgoing webhooks.",
@@ -253,8 +253,8 @@ export const ui: Record<Lang, Dict> = {
       open: {
         h2: "Open source, built in the open",
         license:
-          "Housecairn is free software under the AGPL-3.0-only licence. Self-hosting is free for everyone.",
-        ai: "Housecairn is developed with an AI agent under human review.",
+          "HouseCairn is free software under the AGPL-3.0-only licence. Self-hosting is free for everyone.",
+        ai: "HouseCairn is developed with an AI agent under human review.",
         review: "Every change goes through a pull request reviewed and merged by the maintainer.",
         security: "Found a security issue? Please report it privately through GitHub private vulnerability reporting, never in a public issue.",
         securityLink: "Report a vulnerability",
@@ -262,22 +262,22 @@ export const ui: Record<Lang, Dict> = {
       },
       start: {
         h2: "Get started",
-        text: "Housecairn is not ready to install yet. When a first version is available, the documentation will explain how to run it on your own server.",
+        text: "HouseCairn is not ready to install yet. When a first version is available, the documentation will explain how to run it on your own server.",
         docsCta: "Documentation",
         docsNote: "docs.housecairn.app is not online yet.",
       },
       support: {
         h2: "Support the project",
-        text: "If you would like to help Housecairn move forward, you can buy the maintainer a coffee.",
+        text: "If you would like to help HouseCairn move forward, you can buy the maintainer a coffee.",
         cta: "Buy me a coffee",
       },
     },
     roadmap: {
-      title: "Roadmap · Housecairn",
+      title: "Roadmap · HouseCairn",
       description:
-        "The milestones of Housecairn, from the first repository to version 1.0. No dates: each step is done when it is ready.",
+        "The milestones of HouseCairn, from the first repository to version 1.0. No dates: each step is done when it is ready.",
       h1: "Roadmap",
-      lead: "Housecairn is in early development. Here are the milestones, in order.",
+      lead: "HouseCairn is in early development. Here are the milestones, in order.",
       noDates: "No dates are promised: each step is done when it is ready.",
       milestones: [
         { title: "Repository and CI", text: "Public repository, licence, and automated checks on every pull request." },
@@ -292,13 +292,13 @@ export const ui: Record<Lang, Dict> = {
       followCta: "Follow progress on GitHub",
     },
     notFound: {
-      title: "Page not found · Housecairn",
+      title: "Page not found · HouseCairn",
       h1: "Page not found",
       text: "This page does not exist, or not anymore.",
       back: "Back to the home page",
     },
     footer: {
-      by: "Housecairn, by Robvred",
+      by: "HouseCairn, by Robvred",
       license: "Free software, AGPL-3.0-only",
       source: "Source code",
       docs: "Documentation",
@@ -380,16 +380,16 @@ export const ui: Record<Lang, Dict> = {
     switchLabel: "English",
     switchAria: "Read this page in English",
     home: {
-      title: "Housecairn : entretien et travaux de la maison, auto-hébergé",
+      title: "HouseCairn : entretien et travaux de la maison, auto-hébergé",
       description:
-        "Housecairn est une application web libre et auto-hébergée pour la maison : quoi faire, où, quand, avec quoi et pour combien. Entretien récurrent et projets de travaux, pièce par pièce.",
+        "HouseCairn est une application web libre et auto-hébergée pour la maison : quoi faire, où, quand, avec quoi et pour combien. Entretien récurrent et projets de travaux, pièce par pièce.",
       eyebrow: "Libre et open source · Auto-hébergé",
       h1: "Quoi faire dans la maison, où, quand, avec quoi et pour combien.",
       lead:
-        "Housecairn suit l’entretien récurrent, comme la pile du détecteur de fumée ou le filtre de la ventilation, et les projets de travaux ponctuels, comme repeindre le salon ou refaire la salle de bain. Pièce par pièce, pour tout le foyer.",
+        "HouseCairn suit l’entretien récurrent, comme la pile du détecteur de fumée ou le filtre de la ventilation, et les projets de travaux ponctuels, comme repeindre le salon ou refaire la salle de bain. Pièce par pièce, pour tout le foyer.",
       statusStrong: "Développement en cours.",
       status:
-        "Housecairn n’est pas encore utilisable. Cette page décrit la première version prévue (v1).",
+        "HouseCairn n’est pas encore utilisable. Cette page décrit la première version prévue (v1).",
       ctaSource: "Suivre le code sur GitHub",
       ctaRoadmap: "Voir la feuille de route",
       heroFigure:
@@ -397,7 +397,7 @@ export const ui: Record<Lang, Dict> = {
       problem: {
         h2: "Une maison, c’est une longue liste que personne ne tient",
         intro:
-          "L’entretien s’oublie, les références se perdent et le budget des travaux reste dans la tête de quelqu’un. Housecairn réunit tout au même endroit, hébergé chez vous.",
+          "L’entretien s’oublie, les références se perdent et le budget des travaux reste dans la tête de quelqu’un. HouseCairn réunit tout au même endroit, hébergé chez vous.",
         points: [
           {
             title: "Les tâches qui reviennent",
@@ -483,11 +483,11 @@ export const ui: Record<Lang, Dict> = {
       integrations: {
         h2: "Intégrations facultatives",
         intro:
-          "Toutes les intégrations sont désactivées par défaut. Housecairn fonctionne entièrement sans elles.",
+          "Toutes les intégrations sont désactivées par défaut. HouseCairn fonctionne entièrement sans elles.",
         list: [
           {
             title: "Home Assistant",
-            text: "Importer les pièces, laisser des capteurs armer des tâches (une pile faible, par exemple) et relayer les notifications. Housecairn ne détient jamais de jeton Home Assistant : c’est Home Assistant qui lui envoie les informations.",
+            text: "Importer les pièces, laisser des capteurs armer des tâches (une pile faible, par exemple) et relayer les notifications. HouseCairn ne détient jamais de jeton Home Assistant : c’est Home Assistant qui lui envoie les informations.",
           },
           {
             title: "Paperless-ngx",
@@ -495,7 +495,7 @@ export const ui: Record<Lang, Dict> = {
           },
           {
             title: "Sure",
-            text: "Rapprocher une transaction existante pour reprendre son montant. Housecairn ne crée jamais de transaction.",
+            text: "Rapprocher une transaction existante pour reprendre son montant. HouseCairn ne crée jamais de transaction.",
           },
         ],
         later: "Plus tard : un serveur MCP et des webhooks sortants.",
@@ -516,8 +516,8 @@ export const ui: Record<Lang, Dict> = {
       open: {
         h2: "Open source, développé au grand jour",
         license:
-          "Housecairn est un logiciel libre sous licence AGPL-3.0-only. L’auto-hébergement est gratuit pour tout le monde.",
-        ai: "Housecairn est développé avec un agent d’IA, sous relecture humaine.",
+          "HouseCairn est un logiciel libre sous licence AGPL-3.0-only. L’auto-hébergement est gratuit pour tout le monde.",
+        ai: "HouseCairn est développé avec un agent d’IA, sous relecture humaine.",
         review: "Chaque modification passe par une pull request relue et fusionnée par le mainteneur.",
         security: "Vous avez trouvé une faille de sécurité ? Signalez-la en privé par le signalement privé de vulnérabilités de GitHub, jamais dans un ticket public.",
         securityLink: "Signaler une vulnérabilité",
@@ -525,22 +525,22 @@ export const ui: Record<Lang, Dict> = {
       },
       start: {
         h2: "Commencer",
-        text: "Housecairn n’est pas encore prêt à installer. Quand une première version sera disponible, la documentation expliquera comment le faire tourner sur votre propre serveur.",
+        text: "HouseCairn n’est pas encore prêt à installer. Quand une première version sera disponible, la documentation expliquera comment le faire tourner sur votre propre serveur.",
         docsCta: "Documentation",
         docsNote: "docs.housecairn.app n’est pas encore en ligne.",
       },
       support: {
         h2: "Soutenir le projet",
-        text: "Si vous voulez aider Housecairn à avancer, vous pouvez offrir un café au mainteneur.",
+        text: "Si vous voulez aider HouseCairn à avancer, vous pouvez offrir un café au mainteneur.",
         cta: "Offrir un café",
       },
     },
     roadmap: {
-      title: "Feuille de route · Housecairn",
+      title: "Feuille de route · HouseCairn",
       description:
-        "Les étapes de Housecairn, du premier dépôt à la version 1.0. Pas de dates : chaque étape est terminée quand elle est prête.",
+        "Les étapes de HouseCairn, du premier dépôt à la version 1.0. Pas de dates : chaque étape est terminée quand elle est prête.",
       h1: "Feuille de route",
-      lead: "Housecairn est en début de développement. Voici les étapes, dans l’ordre.",
+      lead: "HouseCairn est en début de développement. Voici les étapes, dans l’ordre.",
       noDates: "Aucune date n’est promise : chaque étape est terminée quand elle est prête.",
       milestones: [
         { title: "Dépôt et intégration continue", text: "Dépôt public, licence et vérifications automatiques sur chaque pull request." },
@@ -555,13 +555,13 @@ export const ui: Record<Lang, Dict> = {
       followCta: "Suivre l’avancement sur GitHub",
     },
     notFound: {
-      title: "Page introuvable · Housecairn",
+      title: "Page introuvable · HouseCairn",
       h1: "Page introuvable",
       text: "Cette page n’existe pas, ou plus.",
       back: "Retour à l’accueil",
     },
     footer: {
-      by: "Housecairn, par Robvred",
+      by: "HouseCairn, par Robvred",
       license: "Logiciel libre, AGPL-3.0-only",
       source: "Code source",
       docs: "Documentation",
