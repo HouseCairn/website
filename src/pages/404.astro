@@ -1,0 +1,22 @@
+---
+// GitHub Pages serves /404.html for every unknown path, in both languages:
+// the page is bilingual.
+import Base from "../layouts/Base.astro";
+import { ui } from "../i18n/ui";
+const en = ui.en.notFound;
+const fr = ui.fr.notFound;
+---
+<Base lang="en" title={`${en.title} / ${fr.h1}`} description={en.text} slug={null} noindex>
+  <section class="section page-head">
+    <div class="wrap narrow">
+      <h1>{en.h1}</h1>
+      <p class="lead">{en.text}</p>
+      <a class="btn btn-primary" href="/">{en.back}</a>
+      <div lang="fr" class="nf-fr">
+        <h2>{fr.h1}</h2>
+        <p>{fr.text}</p>
+        <a class="btn btn-ghost" href="/fr/">{fr.back}</a>
+      </div>
+    </div>
+  </section>
+</Base>

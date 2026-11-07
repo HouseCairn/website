@@ -1,0 +1,8 @@
+node_modules/
+.astro/
+.tmp/
+# dist/ is built locally for review; CI rebuilds it.
+dist/
+.apercus/
+# scratch scripts
+scripts/_*

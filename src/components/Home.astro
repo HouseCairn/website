@@ -1,0 +1,137 @@
+---
+import Base from "../layouts/Base.astro";
+import TodayScreen from "./mock/TodayScreen.astro";
+import ItemScreen from "./mock/ItemScreen.astro";
+import StockScreen from "./mock/StockScreen.astro";
+import { ui, LINKS, localePath, type Lang } from "../i18n/ui";
+import { softwareJsonLd } from "../i18n/jsonld";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const h = t.home;
+---
+<Base lang={lang} title={h.title} description={h.description} slug="" jsonLd={softwareJsonLd(lang, Astro.site!)}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">{h.eyebrow}</p>
+        <h1>{h.h1}</h1>
+        <p class="lead">{h.lead}</p>
+        <p class="status" role="note"><strong>{h.statusStrong}</strong> {h.status}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={LINKS.source}>{h.ctaSource}</a>
+          <a class="btn btn-ghost" href={localePath(lang, "roadmap")}>{h.ctaRoadmap}</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <TodayScreen lang={lang} />
+        <figcaption class="sr-only">{h.heroFigure}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="problem-h">
+    <div class="wrap">
+      <h2 id="problem-h">{h.problem.h2}</h2>
+      <p class="section-intro">{h.problem.intro}</p>
+      <ul class="cards cards-3">
+        {h.problem.points.map((p) => (
+          <li class="card"><h3>{p.title}</h3><p>{p.text}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">{h.features.h2}</h2>
+      <p class="section-intro">{h.features.intro}</p>
+      <ul class="features">
+        {h.features.list.map((f) => (
+          <li class="feature"><h3>{f.title}</h3><p>{f.text}</p></li>
+        ))}
+      </ul>
+
+      <div class="showcases">
+      <div class="showcase">
+        <div class="showcase-text">
+          <h3>{h.itemFigure.title}</h3>
+          <p>{h.itemFigure.text}</p>
+        </div>
+        <figure class="showcase-figure">
+          <ItemScreen lang={lang} />
+          <figcaption>{h.itemFigure.caption}</figcaption>
+        </figure>
+      </div>
+      <div class="showcase">
+        <div class="showcase-text">
+          <h3>{h.stockFigure.title}</h3>
+          <p>{h.stockFigure.text}</p>
+        </div>
+        <figure class="showcase-figure">
+          <StockScreen lang={lang} />
+          <figcaption>{h.stockFigure.caption}</figcaption>
+        </figure>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="integrations" aria-labelledby="integrations-h">
+    <div class="wrap">
+      <h2 id="integrations-h">{h.integrations.h2}</h2>
+      <p class="section-intro">{h.integrations.intro}</p>
+      <ul class="cards cards-3">
+        {h.integrations.list.map((i) => (
+          <li class="card card-integration"><h3>{i.title}</h3><p>{i.text}</p></li>
+        ))}
+      </ul>
+      <p class="note">{h.integrations.later} {h.integrations.ios}</p>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="principles" aria-labelledby="principles-h">
+    <div class="wrap">
+      <h2 id="principles-h">{h.principles.h2}</h2>
+      <p class="section-intro">{h.principles.intro}</p>
+      <ul class="principles">
+        {h.principles.list.map((p) => (
+          <li><h3>{p.title}</h3><p>{p.text}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="open-source" aria-labelledby="open-h">
+    <div class="wrap two-col">
+      <div>
+        <h2 id="open-h">{h.open.h2}</h2>
+        <p>{h.open.license}</p>
+        <p>{h.open.ai} {h.open.review}</p>
+        <a class="btn btn-primary" href={LINKS.source}>{h.open.ctaSource}</a>
+      </div>
+      <aside class="callout" aria-labelledby="security-h">
+        <h3 id="security-h">{t.footer.security}</h3>
+        <p>{h.open.security}</p>
+        <a href={LINKS.security}>{h.open.securityLink}</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="get-started" aria-labelledby="start-h">
+    <div class="wrap two-col">
+      <div>
+        <h2 id="start-h">{h.start.h2}</h2>
+        <p>{h.start.text}</p>
+        <a class="btn btn-ghost" href={LINKS.docs}>{h.start.docsCta}</a>
+        <p class="small">{h.start.docsNote}</p>
+      </div>
+      <div id="support">
+        <h2>{h.support.h2}</h2>
+        <p>{h.support.text}</p>
+        <a class="btn btn-sand" href={LINKS.support}>{h.support.cta}</a>
+      </div>
+    </div>
+  </section>
+</Base>
