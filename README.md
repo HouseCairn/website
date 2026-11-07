@@ -1,6 +1,6 @@
 # housecairn.app
 
-Public showcase website for [Housecairn](https://github.com/HouseCairn/HouseCairn), a free and open-source, self-hosted web app for home maintenance and renovation.
+Public showcase website for [HouseCairn](https://github.com/HouseCairn/HouseCairn), a free and open-source, self-hosted web app for home maintenance and renovation.
 
 Static site built with [Astro](https://astro.build), in English (`/`) and French (`/fr/`).
 No client-side JavaScript, no cookies, no analytics, no external resources: fonts are self-hosted
@@ -71,9 +71,9 @@ to `housecairn.app`.
 
 ## How this project is built
 
-Housecairn is developed with an AI agent, under human review. Every change to this site goes
+HouseCairn is developed with an AI agent, under human review. Every change to this site goes
 through a pull request that the maintainer reads and merges; nothing is pushed straight to `main`.
 
 ## Licence
 
-AGPL-3.0-only, like Housecairn.
+AGPL-3.0-only, like HouseCairn.

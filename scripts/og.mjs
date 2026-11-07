@@ -62,7 +62,7 @@ const fontFiles = [400, 700, 800].map((w) => {
 
 // Logo for dark backgrounds, used as a nested SVG.
 const logo = readFileSync(join(root, "public/brand/housecairn-logo-fond-sombre.svg"), "utf8")
-  .replace(/<svg[^>]*>/, '<svg x="80" y="70" width="438" height="128" viewBox="0 0 876 256">');
+  .replace(/<svg[^>]*>/, '<svg x="80" y="70" width="447" height="128" viewBox="0 0 893 256">');
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 

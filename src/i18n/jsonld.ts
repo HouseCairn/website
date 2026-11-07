@@ -5,7 +5,7 @@ export function softwareJsonLd(lang: Lang, site: URL) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Housecairn",
+    name: "HouseCairn",
     description: t.home.description,
     url: new URL(localePath(lang), site).href,
     inLanguage: ["en", "fr"],
