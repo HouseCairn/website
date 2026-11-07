@@ -1,0 +1,118 @@
+---
+import "@fontsource/manrope/latin-400.css";
+import "@fontsource/manrope/latin-600.css";
+import "@fontsource/manrope/latin-700.css";
+import "@fontsource/manrope/latin-800.css";
+import "../styles/global.css";
+import { ui, LINKS, localePath, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** "" for home, "roadmap" for the roadmap; null for pages without alternates (404). */
+  slug: string | null;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { lang, title, description, slug, noindex = false, jsonLd } = Astro.props;
+const t = ui[lang];
+const other: Lang = lang === "en" ? "fr" : "en";
+const site = Astro.site!;
+const path = slug === null ? Astro.url.pathname : localePath(lang, slug);
+const canonical = new URL(path, site).href;
+const alternates =
+  slug === null
+    ? []
+    : [
+        { hreflang: "en", href: new URL(localePath("en", slug), site).href },
+        { hreflang: "fr", href: new URL(localePath("fr", slug), site).href },
+        { hreflang: "x-default", href: new URL(localePath("en", slug), site).href },
+      ];
+const ogImage = new URL(`/og/og-${lang}.png`, site).href;
+const ogAlt = lang === "en"
+  ? "Housecairn logo with the tagline: what to do in the house, where, when, with what, and for how much."
+  : "Logo Housecairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
+const switchHref = localePath(other, slug ?? "");
+const home = localePath(lang);
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <meta name="theme-color" content="#1F3A3D" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Housecairn" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={t.ogLocale} />
+    <meta property="og:locale:alternate" content={ui[other].ogLocale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">{t.skip}</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={home}>
+          <img src="/brand/housecairn-logo.svg" width="164" height="48" alt="Housecairn" />
+        </a>
+        <nav class="nav" aria-label={t.nav.menu}>
+          <ul>
+            <li><a href={`${home}#features`}>{t.nav.features}</a></li>
+            <li><a href={`${home}#integrations`}>{t.nav.integrations}</a></li>
+            <li><a href={`${home}#principles`}>{t.nav.principles}</a></li>
+            <li><a href={localePath(lang, "roadmap")} aria-current={slug === "roadmap" ? "page" : undefined}>{t.nav.roadmap}</a></li>
+            <li><a href={LINKS.source}>GitHub</a></li>
+            <li>
+              <a class="lang" href={switchHref} hreflang={other} lang={other} aria-label={t.switchAria}>{t.switchLabel}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <img src="/brand/housecairn-logo-fond-sombre.svg" width="164" height="48" alt="Housecairn" loading="lazy" />
+          <p>{t.footer.by}</p>
+          <p>{t.footer.license}</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href={LINKS.source}>{t.footer.source}</a></li>
+          <li><a href={LINKS.docs}>{t.footer.docs}</a></li>
+          <li><a href={localePath(lang, "roadmap")}>{t.footer.roadmap}</a></li>
+          <li><a href={LINKS.security}>{t.footer.security}</a></li>
+          <li><a href={LINKS.support}>{t.footer.support}</a></li>
+          <li><a href={switchHref} hreflang={other} lang={other}>{t.switchLabel}</a></li>
+        </ul>
+        <p class="footer-note">{t.footer.noTracking}</p>
+      </div>
+    </footer>
+  </body>
+</html>
