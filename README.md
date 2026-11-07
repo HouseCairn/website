@@ -31,13 +31,23 @@ Set `ASTRO_TELEMETRY_DISABLED=1` to turn off Astro's own build telemetry.
 | `src/i18n/jsonld.ts` | JSON-LD `SoftwareApplication` |
 | `src/layouts/Base.astro` | `<head>` (SEO, hreflang, Open Graph), header, footer |
 | `src/components/Home.astro`, `Roadmap.astro` | Page bodies, shared by both languages |
-| `src/components/mock/` | HTML/CSS illustrations of planned screens (fictional data) |
+| `src/components/Shot.astro` | Screenshot component: AVIF and WebP with PNG fallback, declared dimensions |
+| `src/assets/app/` | Real application screenshots (demo data), English and French |
 | `src/pages/` | Routes: `/`, `/roadmap/`, `/fr/`, `/fr/roadmap/`, `/404.html` |
 | `public/` | Logo, favicons, Open Graph images, `robots.txt` |
 | `scripts/og.mjs` | Regenerates `public/og/og-{en,fr}.png` (1200x630) from SVG |
 
 To change the Open Graph images, edit `scripts/og.mjs` and run `npm run og`
 (uses the dev dependency `@resvg/resvg-js`). The source SVGs are written next to the script.
+
+## Application screenshots
+
+The screenshots in `src/assets/app/` are produced by the `Documentation` workflow of
+[HouseCairn/HouseCairn](https://github.com/HouseCairn/HouseCairn) (artifact `docs-screenshots`) from a demo
+instance with fictional data (`demo@example.com`, "Example house"). To refresh them, download that artifact
+from the latest run on `main`, check that nothing real is visible, and replace the files
+`homes-mobile`, `more-desktop` and `sign-in-mobile` (`.en.png` and `.fr.png`). The build converts them to
+AVIF and WebP.
 
 ## Content Security Policy
 
