@@ -69,6 +69,11 @@ grep -rno "<script[^>]*>" dist/ | grep -v "application/ld+json"
 to `main`. In the repository settings, set Pages to "GitHub Actions" and the custom domain
 to `housecairn.app`.
 
+## How this project is built
+
+Housecairn is developed with an AI agent, under human review. Every change to this site goes
+through a pull request that the maintainer reads and merges; nothing is pushed straight to `main`.
+
 ## Licence
 
 AGPL-3.0-only, like Housecairn.
