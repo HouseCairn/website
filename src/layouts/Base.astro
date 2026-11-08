@@ -36,6 +36,7 @@ const ogAlt = lang === "en"
   : "Logo HouseCairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
 const switchHref = localePath(other, slug ?? "");
 const home = localePath(lang);
+const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
 ---
 
 <!doctype html>
@@ -83,6 +84,7 @@ const home = localePath(lang);
             <li><a href={`${home}#integrations`}>{t.nav.integrations}</a></li>
             <li><a href={`${home}#principles`}>{t.nav.principles}</a></li>
             <li><a href={localePath(lang, "roadmap")} aria-current={slug === "roadmap" ? "page" : undefined}>{t.nav.roadmap}</a></li>
+            <li><a href={docsHref}>{t.nav.docs}</a></li>
             <li><a href={LINKS.source}>GitHub</a></li>
             <li>
               <a class="lang" href={switchHref} hreflang={other} lang={other} aria-label={t.switchAria}>{t.switchLabel}</a>
@@ -105,7 +107,7 @@ const home = localePath(lang);
         </div>
         <ul class="footer-links">
           <li><a href={LINKS.source}>{t.footer.source}</a></li>
-          <li><a href={LINKS.docs}>{t.footer.docs}</a></li>
+          <li><a href={docsHref}>{t.footer.docs}</a></li>
           <li><a href={localePath(lang, "roadmap")}>{t.footer.roadmap}</a></li>
           <li><a href={LINKS.security}>{t.footer.security}</a></li>
           <li><a href={LINKS.support}>{t.footer.support}</a></li>

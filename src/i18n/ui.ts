@@ -7,6 +7,7 @@ export type Lang = keyof typeof languages;
 export const LINKS = {
   source: "https://github.com/HouseCairn/HouseCairn",
   docs: "https://docs.housecairn.app",
+  docsFr: "https://docs.housecairn.app/fr/",
   support: "https://buymeacoffee.com/robvred",
   security: "https://github.com/HouseCairn/HouseCairn/security/advisories/new",
   license: "https://spdx.org/licenses/AGPL-3.0-only.html",
@@ -25,7 +26,7 @@ export interface Dict {
   htmlLang: string;
   ogLocale: string;
   skip: string;
-  nav: { features: string; integrations: string; principles: string; roadmap: string; source: string; menu: string };
+  nav: { features: string; integrations: string; principles: string; roadmap: string; docs: string; source: string; menu: string };
   switchLabel: string; // visible label for link to the other language
   switchAria: string;
   home: {
@@ -41,12 +42,14 @@ export interface Dict {
     heroFigure: string;
     problem: { h2: string; intro: string; points: Item[] };
     features: { h2: string; intro: string; planned: string; list: Feature[] };
-    itemFigure: { title: string; text: string; caption: string };
-    stockFigure: { title: string; text: string; caption: string };
+    todayH2: string;
+    todayIntro: string;
+    accountFigure: { title: string; text: string; alt: string; caption: string };
+    signinFigure: { title: string; text: string; alt: string; caption: string };
     integrations: { h2: string; intro: string; list: Item[]; later: string; ios: string };
     principles: { h2: string; intro: string; list: Item[] };
     open: { h2: string; license: string; ai: string; review: string; security: string; securityLink: string; ctaSource: string };
-    start: { h2: string; text: string; docsCta: string; docsNote: string };
+    start: { h2: string; text: string; docsCta: string; docsNote: string; docsFr: string };
     support: { h2: string; text: string; cta: string };
   };
   roadmap: {
@@ -62,43 +65,6 @@ export interface Dict {
   };
   notFound: { title: string; h1: string; text: string; back: string };
   footer: { by: string; license: string; source: string; docs: string; support: string; security: string; roadmap: string; noTracking: string };
-  mock: {
-    today: string;
-    household: string;
-    filterAll: string;
-    overdue: string;
-    thisWeek: string;
-    done: string;
-    tasks: { title: string; meta: string[]; badge?: string; tone?: "late" | "info" | "plain" }[];
-    nav: string[];
-    item: {
-      title: string;
-      name: string;
-      place: string;
-      rows: [string, string][];
-      warrantyLabel: string;
-      warranty: string;
-      logH: string;
-      stats: [string, string][];
-      tco: string;
-      docsH: string;
-      docs: [string, string][];
-    };
-    stock: {
-      title: string;
-      name: string;
-      forWhat: string;
-      level: string;
-      refH: string;
-      refLabel: string;
-      ref: string;
-      copy: string;
-      needs: string;
-      buyH: string;
-      suppliers: [string, string][];
-      label: string;
-    };
-  };
 }
 
 export const ui: Record<Lang, Dict> = {
@@ -111,6 +77,7 @@ export const ui: Record<Lang, Dict> = {
       integrations: "Integrations",
       principles: "Principles",
       roadmap: "Roadmap",
+      docs: "Docs",
       source: "Source code",
       menu: "Main navigation",
     },
@@ -126,11 +93,11 @@ export const ui: Record<Lang, Dict> = {
         "HouseCairn keeps track of recurring maintenance, like the smoke detector battery or the ventilation filter, and of one-off renovation projects, like repainting the living room or redoing the bathroom. Room by room, for the whole household.",
       statusStrong: "Early development.",
       status:
-        "HouseCairn is not usable yet. This page describes the planned first version (v1).",
+        "HouseCairn is not usable for planning yet: the application skeleton runs (sign-in, passkeys, homes), the screens to plan maintenance and projects do not exist. This page describes the planned first version (v1).",
       ctaSource: "Follow the code on GitHub",
       ctaRoadmap: "See the roadmap",
       heroFigure:
-        "Illustration of the planned Today screen: overdue tasks and tasks for this week, each with a Done button. Fictional data.",
+        "Screenshot of the current HouseCairn application on a phone: the Homes list with two demo homes, Example cottage and Example house, and a sign-in confirmation. Demo data.",
       problem: {
         h2: "A house is a long list nobody keeps",
         intro:
@@ -205,17 +172,19 @@ export const ui: Record<Lang, Dict> = {
           },
         ],
       },
-      itemFigure: {
-        title: "Every item has its sheet",
-        text: "Model, installation date, warranty, service history and what it has cost so far. Manuals and invoices can stay in Paperless-ngx, linked from the sheet.",
-        caption:
-          "Illustration of a planned item sheet for a gas boiler: details, warranty reminder, history and total cost. Fictional data.",
+      todayH2: "The application today",
+      todayIntro: "Real screenshots of the current build, with demo data. The planned features above come on top of this foundation.",
+      accountFigure: {
+        title: "Account security and API",
+        text: "Passkeys, authenticator app and recovery codes are in the account pages, and the REST API ships with an OpenAPI schema and a test interface.",
+        alt: "Screenshot of the More page on a desktop browser: Homes, Account security (passkeys, authenticator app, recovery codes), API documentation (OpenAPI schema and test interface), About, and a Sign out button.",
+        caption: "The More page, desktop layout. Demo data.",
       },
-      stockFigure: {
-        title: "Never search for a reference again",
-        text: "The exact filter, battery or bulb, where it is stored, where to buy it and what you paid last time.",
-        caption:
-          "Illustration of a planned stock sheet for a ventilation filter: manufacturer reference, suppliers and last price paid. Fictional data.",
+      signinFigure: {
+        title: "Built for the phone first",
+        text: "A single-column layout with a bottom navigation bar, large touch targets and a short sign-in form.",
+        alt: "Screenshot of the sign-in page on a phone: Email and Password fields, a Remember Me checkbox and a dark Sign in button.",
+        caption: "The sign-in page, phone layout.",
       },
       integrations: {
         h2: "Optional integrations",
@@ -262,9 +231,10 @@ export const ui: Record<Lang, Dict> = {
       },
       start: {
         h2: "Get started",
-        text: "HouseCairn is not ready to install yet. When a first version is available, the documentation will explain how to run it on your own server.",
-        docsCta: "Documentation",
-        docsNote: "docs.housecairn.app is not online yet.",
+        text: "HouseCairn is not ready for daily use yet, but the container image and the documentation exist: install with Docker Compose, first start, reverse proxy, single sign-on, backups and hardening. The documentation describes only what exists today.",
+        docsCta: "Read the documentation",
+        docsNote: "docs.housecairn.app, in English. The documentation is also available in French.",
+        docsFr: "Documentation en français",
       },
       support: {
         h2: "Support the project",
@@ -307,62 +277,6 @@ export const ui: Record<Lang, Dict> = {
       roadmap: "Roadmap",
       noTracking: "This site uses no cookies, no analytics and no external resources.",
     },
-    mock: {
-      today: "Today",
-      household: "Home",
-      filterAll: "Everyone",
-      overdue: "Overdue",
-      thisWeek: "This week",
-      done: "Done",
-      tasks: [
-        { title: "Replace smoke detector battery", meta: ["2 days late", "Hallway"], badge: "sensor", tone: "late" },
-        { title: "Clean the ventilation vents", meta: ["12 days late", "Kitchen, Bathroom"], badge: "every 3 months", tone: "late" },
-        { title: "Descale the shower head", meta: ["Thu", "Bathroom"], tone: "plain" },
-        { title: "Garage door squeaks", meta: ["reported by Sam", "Garage"], tone: "info" },
-      ],
-      nav: ["Today", "Rooms", "Projects", "Budget", "More"],
-      item: {
-        title: "Gas boiler",
-        name: "Condensing gas boiler",
-        place: "Utility room · item",
-        rows: [
-          ["Model", "Example 25 kW"],
-          ["Installed", "2021"],
-          ["Service contract", "yearly"],
-        ],
-        warrantyLabel: "Warranty",
-        warranty: "ends in 10 months",
-        logH: "History",
-        stats: [
-          ["Services", "5"],
-          ["Repairs", "1"],
-          ["Total cost", "€4,245"],
-        ],
-        tco: "Purchase, installation, services and parts.",
-        docsH: "Documents in Paperless",
-        docs: [
-          ["Installation manual", "link, nothing copied"],
-          ["Installation invoice", "link, nothing copied"],
-        ],
-      },
-      stock: {
-        title: "Stock item",
-        name: "Ventilation filter F7",
-        forWhat: "For: ventilation unit (attic)",
-        level: "in stock 0 · threshold 1",
-        refH: "Reference",
-        refLabel: "Manufacturer reference",
-        ref: "F7-280x190x48",
-        copy: "Copy",
-        needs: "Needed in the next 90 days: 2",
-        buyH: "Where to buy",
-        suppliers: [
-          ["Supplier A · ref. 4512-F7", "last price paid €18.90"],
-          ["Supplier B · ref. VF7-280", "€22.50"],
-        ],
-        label: "QR label",
-      },
-    },
   },
 
   fr: {
@@ -374,6 +288,7 @@ export const ui: Record<Lang, Dict> = {
       integrations: "Intégrations",
       principles: "Principes",
       roadmap: "Feuille de route",
+      docs: "Documentation",
       source: "Code source",
       menu: "Navigation principale",
     },
@@ -389,11 +304,11 @@ export const ui: Record<Lang, Dict> = {
         "HouseCairn suit l’entretien récurrent, comme la pile du détecteur de fumée ou le filtre de la ventilation, et les projets de travaux ponctuels, comme repeindre le salon ou refaire la salle de bain. Pièce par pièce, pour tout le foyer.",
       statusStrong: "Développement en cours.",
       status:
-        "HouseCairn n’est pas encore utilisable. Cette page décrit la première version prévue (v1).",
+        "HouseCairn n’est pas encore utilisable pour planifier : le squelette de l’application tourne (connexion, clés d’accès, logements), les écrans pour planifier l’entretien et les projets n’existent pas. Cette page décrit la première version prévue (v1).",
       ctaSource: "Suivre le code sur GitHub",
       ctaRoadmap: "Voir la feuille de route",
       heroFigure:
-        "Illustration de l’écran Aujourd’hui prévu : tâches en retard et tâches de la semaine, chacune avec un bouton Fait. Données fictives.",
+        "Capture de l’application HouseCairn actuelle sur téléphone : la liste des logements avec deux logements de démonstration, Example cottage et Example house, et un message de connexion réussie. Données de démonstration.",
       problem: {
         h2: "Une maison, c’est une longue liste que personne ne tient",
         intro:
@@ -468,17 +383,19 @@ export const ui: Record<Lang, Dict> = {
           },
         ],
       },
-      itemFigure: {
-        title: "Chaque élément a sa fiche",
-        text: "Modèle, date de pose, garantie, historique d’entretien et ce qu’il a coûté jusqu’ici. Notices et factures peuvent rester dans Paperless-ngx, liées depuis la fiche.",
-        caption:
-          "Illustration d’une fiche élément prévue pour une chaudière gaz : caractéristiques, rappel de garantie, historique et coût total. Données fictives.",
+      todayH2: "L’application aujourd’hui",
+      todayIntro: "De vraies captures de la version actuelle, avec des données de démonstration. Les fonctions prévues ci-dessus viendront s’ajouter à cette base.",
+      accountFigure: {
+        title: "Sécurité du compte et API",
+        text: "Clés d’accès, application d’authentification et codes de récupération sont dans les pages du compte, et l’API REST est livrée avec un schéma OpenAPI et une interface de test.",
+        alt: "Capture de la page Plus dans un navigateur de bureau : Logements, Sécurité du compte (clés d’accès, application d’authentification, codes de récupération), Documentation de l’API (schéma OpenAPI et interface de test), À propos, et un bouton Se déconnecter.",
+        caption: "La page Plus, affichage ordinateur. Données de démonstration.",
       },
-      stockFigure: {
-        title: "Ne plus jamais chercher une référence",
-        text: "Le bon filtre, la bonne pile ou la bonne ampoule, où elle est rangée, où l’acheter et combien vous l’avez payée la dernière fois.",
-        caption:
-          "Illustration d’une fiche de stock prévue pour un filtre de ventilation : référence fabricant, fournisseurs et dernier prix payé. Données fictives.",
+      signinFigure: {
+        title: "Pensée d’abord pour le téléphone",
+        text: "Une seule colonne, une barre de navigation en bas, de grandes zones tactiles et un formulaire de connexion court.",
+        alt: "Capture de la page de connexion sur téléphone : champs Adresse e-mail et Mot de passe, case Se souvenir de moi et bouton foncé Se connecter.",
+        caption: "La page de connexion, affichage téléphone.",
       },
       integrations: {
         h2: "Intégrations facultatives",
@@ -525,9 +442,10 @@ export const ui: Record<Lang, Dict> = {
       },
       start: {
         h2: "Commencer",
-        text: "HouseCairn n’est pas encore prêt à installer. Quand une première version sera disponible, la documentation expliquera comment le faire tourner sur votre propre serveur.",
-        docsCta: "Documentation",
-        docsNote: "docs.housecairn.app n’est pas encore en ligne.",
+        text: "HouseCairn n’est pas encore prêt pour un usage quotidien, mais l’image de conteneur et la documentation existent : installation avec Docker Compose, premier démarrage, reverse proxy, authentification unique, sauvegardes et durcissement. La documentation ne décrit que ce qui existe aujourd’hui.",
+        docsCta: "Lire la documentation",
+        docsNote: "docs.housecairn.app, en français.",
+        docsFr: "Documentation in English",
       },
       support: {
         h2: "Soutenir le projet",
@@ -569,62 +487,6 @@ export const ui: Record<Lang, Dict> = {
       security: "Sécurité",
       roadmap: "Feuille de route",
       noTracking: "Ce site n’utilise ni cookie, ni mesure d’audience, ni ressource externe.",
-    },
-    mock: {
-      today: "Aujourd’hui",
-      household: "Maison",
-      filterAll: "Tout le foyer",
-      overdue: "En retard",
-      thisWeek: "Cette semaine",
-      done: "Fait",
-      tasks: [
-        { title: "Changer la pile du détecteur de fumée", meta: ["depuis 2 j", "Couloir"], badge: "capteur", tone: "late" },
-        { title: "Nettoyer les bouches de VMC", meta: ["depuis 12 j", "Cuisine, SdB"], badge: "tous les 3 mois", tone: "late" },
-        { title: "Détartrer le pommeau de douche", meta: ["jeu.", "Salle de bain"], tone: "plain" },
-        { title: "La porte du garage grince", meta: ["signalé par Sam", "Garage"], tone: "info" },
-      ],
-      nav: ["Aujourd’hui", "Pièces", "Projets", "Budget", "Plus"],
-      item: {
-        title: "Chaudière gaz",
-        name: "Chaudière gaz à condensation",
-        place: "Chaufferie · équipement",
-        rows: [
-          ["Modèle", "Exemple 25 kW"],
-          ["Posée en", "2021"],
-          ["Contrat d’entretien", "annuel"],
-        ],
-        warrantyLabel: "Garantie",
-        warranty: "fin dans 10 mois",
-        logH: "Historique",
-        stats: [
-          ["Entretiens", "5"],
-          ["Réparations", "1"],
-          ["Coût total", "4 245 €"],
-        ],
-        tco: "Achat, pose, entretiens et pièces.",
-        docsH: "Documents dans Paperless",
-        docs: [
-          ["Notice d’installation", "lien, rien n’est copié"],
-          ["Facture de pose", "lien, rien n’est copié"],
-        ],
-      },
-      stock: {
-        title: "Article",
-        name: "Filtre VMC F7",
-        forWhat: "Pour : VMC double flux (combles)",
-        level: "stock 0 · seuil 1",
-        refH: "Référence",
-        refLabel: "Référence fabricant",
-        ref: "F7-280x190x48",
-        copy: "Copier",
-        needs: "Besoin dans les 90 jours : 2",
-        buyH: "Où l’acheter",
-        suppliers: [
-          ["Fournisseur A · réf. 4512-F7", "dernier prix payé 18,90 €"],
-          ["Fournisseur B · réf. VF7-280", "22,50 €"],
-        ],
-        label: "Étiquette QR",
-      },
     },
   },
 };

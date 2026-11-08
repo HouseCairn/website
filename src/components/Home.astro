@@ -1,8 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
-import TodayScreen from "./mock/TodayScreen.astro";
-import ItemScreen from "./mock/ItemScreen.astro";
-import StockScreen from "./mock/StockScreen.astro";
+import Shot from "./Shot.astro";
+import homesPhoneEn from "../assets/app/homes-mobile.en.png";
+import homesPhoneFr from "../assets/app/homes-mobile.fr.png";
+import moreDesktopEn from "../assets/app/more-desktop.en.png";
+import moreDesktopFr from "../assets/app/more-desktop.fr.png";
+import signinPhoneEn from "../assets/app/sign-in-mobile.en.png";
+import signinPhoneFr from "../assets/app/sign-in-mobile.fr.png";
 import { ui, LINKS, localePath, type Lang } from "../i18n/ui";
 import { softwareJsonLd } from "../i18n/jsonld";
 
@@ -10,6 +14,14 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
 const h = t.home;
+const shots = {
+  homes: lang === "fr" ? homesPhoneFr : homesPhoneEn,
+  more: lang === "fr" ? moreDesktopFr : moreDesktopEn,
+  signin: lang === "fr" ? signinPhoneFr : signinPhoneEn,
+};
+const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
+const otherDocsHref = lang === "fr" ? LINKS.docs : LINKS.docsFr;
+const otherDocsLang = lang === "fr" ? "en" : "fr";
 ---
 <Base lang={lang} title={h.title} description={h.description} slug="" jsonLd={softwareJsonLd(lang, Astro.site!)}>
   <section class="hero">
@@ -25,8 +37,7 @@ const h = t.home;
         </div>
       </div>
       <figure class="hero-figure">
-        <TodayScreen lang={lang} />
-        <figcaption class="sr-only">{h.heroFigure}</figcaption>
+        <Shot src={shots.homes} alt={h.heroFigure} kind="phone" eager />
       </figure>
     </div>
   </section>
@@ -53,27 +64,34 @@ const h = t.home;
         ))}
       </ul>
 
+    </div>
+  </section>
+
+  <section class="section" id="today" aria-labelledby="today-h">
+    <div class="wrap">
+      <h2 id="today-h">{h.todayH2}</h2>
+      <p class="section-intro">{h.todayIntro}</p>
       <div class="showcases">
-      <div class="showcase">
-        <div class="showcase-text">
-          <h3>{h.itemFigure.title}</h3>
-          <p>{h.itemFigure.text}</p>
+        <div class="showcase">
+          <div class="showcase-text">
+            <h3>{h.accountFigure.title}</h3>
+            <p>{h.accountFigure.text}</p>
+          </div>
+          <figure class="showcase-figure">
+            <Shot src={shots.more} alt={h.accountFigure.alt} kind="desktop" />
+            <figcaption>{h.accountFigure.caption}</figcaption>
+          </figure>
         </div>
-        <figure class="showcase-figure">
-          <ItemScreen lang={lang} />
-          <figcaption>{h.itemFigure.caption}</figcaption>
-        </figure>
-      </div>
-      <div class="showcase">
-        <div class="showcase-text">
-          <h3>{h.stockFigure.title}</h3>
-          <p>{h.stockFigure.text}</p>
+        <div class="showcase">
+          <div class="showcase-text">
+            <h3>{h.signinFigure.title}</h3>
+            <p>{h.signinFigure.text}</p>
+          </div>
+          <figure class="showcase-figure">
+            <Shot src={shots.signin} alt={h.signinFigure.alt} kind="phone" />
+            <figcaption>{h.signinFigure.caption}</figcaption>
+          </figure>
         </div>
-        <figure class="showcase-figure">
-          <StockScreen lang={lang} />
-          <figcaption>{h.stockFigure.caption}</figcaption>
-        </figure>
-      </div>
       </div>
     </div>
   </section>
@@ -124,8 +142,8 @@ const h = t.home;
       <div>
         <h2 id="start-h">{h.start.h2}</h2>
         <p>{h.start.text}</p>
-        <a class="btn btn-ghost" href={LINKS.docs}>{h.start.docsCta}</a>
-        <p class="small">{h.start.docsNote}</p>
+        <a class="btn btn-primary" href={docsHref}>{h.start.docsCta}</a>
+        <p class="small">{h.start.docsNote} <a href={otherDocsHref} hreflang={otherDocsLang} lang={otherDocsLang}>{h.start.docsFr}</a></p>
       </div>
       <div id="support">
         <h2>{h.support.h2}</h2>
