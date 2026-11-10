@@ -1,33 +1,28 @@
 ---
 import Base from "../layouts/Base.astro";
+import Steps from "./Steps.astro";
 import { ui, LINKS, type Lang } from "../i18n/ui";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const r = ui[lang].roadmap;
+const t = ui[lang];
+const r = t.roadmap;
 ---
 <Base lang={lang} title={r.title} description={r.description} slug="roadmap">
-  <section class="section page-head">
+  <section class="page-h">
     <div class="wrap narrow">
       <h1>{r.h1}</h1>
       <p class="lead">{r.lead}</p>
-      <p class="status" role="note">{r.noDates}</p>
     </div>
   </section>
-  <section class="section section-tight">
-    <div class="wrap narrow">
-      <ol class="timeline">
-        {r.milestones.map((m, i) => (
-          <li>
-            <span class="timeline-num" aria-hidden="true">{i + 1}</span>
-            <div><h2>{m.title}</h2><p>{m.text}</p></div>
-          </li>
-        ))}
-      </ol>
+  <section class="sec" aria-label={r.h1}>
+    <div class="wrap">
+      <Steps lang={lang} headingLevel="h2" />
+      <p class="honest"><strong>{t.home.status.honestStrong}</strong> {t.home.status.honest}</p>
       <h2 class="later-h">{r.laterH2}</h2>
       <ul class="later">
         {r.later.map((l) => <li>{l}</li>)}
       </ul>
-      <a class="btn btn-primary" href={LINKS.source}>{r.followCta}</a>
+      <a class="btn btn-p" href={LINKS.source}>{r.followCta}</a>
     </div>
   </section>
 </Base>

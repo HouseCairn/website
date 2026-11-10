@@ -1,154 +1,165 @@
 ---
 import Base from "../layouts/Base.astro";
 import Shot from "./Shot.astro";
-import homesPhoneEn from "../assets/app/homes-mobile.en.png";
-import homesPhoneFr from "../assets/app/homes-mobile.fr.png";
-import moreDesktopEn from "../assets/app/more-desktop.en.png";
-import moreDesktopFr from "../assets/app/more-desktop.fr.png";
-import signinPhoneEn from "../assets/app/sign-in-mobile.en.png";
-import signinPhoneFr from "../assets/app/sign-in-mobile.fr.png";
+import Steps from "./Steps.astro";
 import { ui, LINKS, localePath, type Lang } from "../i18n/ui";
 import { softwareJsonLd } from "../i18n/jsonld";
+import todayPhoneEn from "../assets/app/today-phone.en.png";
+import todayPhoneFr from "../assets/app/today-phone.fr.png";
+import todayDesktopEn from "../assets/app/today-desktop.en.png";
+import todayDesktopFr from "../assets/app/today-desktop.fr.png";
+import projectsPhoneEn from "../assets/app/projects-phone.en.png";
+import projectsPhoneFr from "../assets/app/projects-phone.fr.png";
+import roomsPhoneEn from "../assets/app/rooms-phone.en.png";
+import roomsPhoneFr from "../assets/app/rooms-phone.fr.png";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
 const h = t.home;
-const shots = {
-  homes: lang === "fr" ? homesPhoneFr : homesPhoneEn,
-  more: lang === "fr" ? moreDesktopFr : moreDesktopEn,
-  signin: lang === "fr" ? signinPhoneFr : signinPhoneEn,
-};
-const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
-const otherDocsHref = lang === "fr" ? LINKS.docs : LINKS.docsFr;
-const otherDocsLang = lang === "fr" ? "en" : "fr";
+const shots = lang === "fr"
+  ? { todayPhone: todayPhoneFr, todayDesktop: todayDesktopFr, projects: projectsPhoneFr, rooms: roomsPhoneFr }
+  : { todayPhone: todayPhoneEn, todayDesktop: todayDesktopEn, projects: projectsPhoneEn, rooms: roomsPhoneEn };
+const install = lang === "fr" ? LINKS.installFr : LINKS.install;
+const pillClass = { ok: "pill pill-ok", part: "pill pill-part", planned: "pill" } as const;
 ---
 <Base lang={lang} title={h.title} description={h.description} slug="" jsonLd={softwareJsonLd(lang, Astro.site!)}>
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-text">
-        <p class="eyebrow">{h.eyebrow}</p>
-        <h1>{h.h1}</h1>
-        <p class="lead">{h.lead}</p>
-        <p class="status" role="note"><strong>{h.statusStrong}</strong> {h.status}</p>
-        <div class="actions">
-          <a class="btn btn-primary" href={LINKS.source}>{h.ctaSource}</a>
-          <a class="btn btn-ghost" href={localePath(lang, "roadmap")}>{h.ctaRoadmap}</a>
-        </div>
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <a class="status" href="#status"><span class="tag">{h.statusTag}</span> {h.statusText}</a>
+      <h1 id="h1">{h.h1}</h1>
+      <p class="lead">{h.lead}</p>
+      <div class="cta">
+        <a class="btn btn-p" href={install}>{h.ctaInstall} <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-s" href={LINKS.source}>{h.ctaSource}</a>
       </div>
-      <figure class="hero-figure">
-        <Shot src={shots.homes} alt={h.heroFigure} kind="phone" eager />
-      </figure>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="problem-h">
-    <div class="wrap">
-      <h2 id="problem-h">{h.problem.h2}</h2>
-      <p class="section-intro">{h.problem.intro}</p>
-      <ul class="cards cards-3">
-        {h.problem.points.map((p) => (
-          <li class="card"><h3>{p.title}</h3><p>{p.text}</p></li>
-        ))}
+      <ul class="facts" aria-label={h.factsLabel}>
+        {h.facts.map((f) => <li>{f}</li>)}
       </ul>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="features" aria-labelledby="features-h">
-    <div class="wrap">
-      <h2 id="features-h">{h.features.h2}</h2>
-      <p class="section-intro">{h.features.intro}</p>
-      <ul class="features">
-        {h.features.list.map((f) => (
-          <li class="feature"><h3>{f.title}</h3><p>{f.text}</p></li>
-        ))}
-      </ul>
-
-    </div>
-  </section>
-
-  <section class="section" id="today" aria-labelledby="today-h">
-    <div class="wrap">
-      <h2 id="today-h">{h.todayH2}</h2>
-      <p class="section-intro">{h.todayIntro}</p>
-      <div class="showcases">
-        <div class="showcase">
-          <div class="showcase-text">
-            <h3>{h.accountFigure.title}</h3>
-            <p>{h.accountFigure.text}</p>
-          </div>
-          <figure class="showcase-figure">
-            <Shot src={shots.more} alt={h.accountFigure.alt} kind="desktop" />
-            <figcaption>{h.accountFigure.caption}</figcaption>
-          </figure>
-        </div>
-        <div class="showcase">
-          <div class="showcase-text">
-            <h3>{h.signinFigure.title}</h3>
-            <p>{h.signinFigure.text}</p>
-          </div>
-          <figure class="showcase-figure">
-            <Shot src={shots.signin} alt={h.signinFigure.alt} kind="phone" />
-            <figcaption>{h.signinFigure.caption}</figcaption>
-          </figure>
-        </div>
+      <div class="stage">
+        <Shot src={shots.todayDesktop} alt="" kind="desktop" eager sizes="(min-width: 76rem) 1000px, (min-width: 64rem) 86vw, 1px" />
+        <Shot src={shots.todayPhone} alt={h.heroPhone.alt} kind="phone" eager />
       </div>
     </div>
   </section>
 
-  <section class="section" id="integrations" aria-labelledby="integrations-h">
+  <section class="sec" id="product" aria-labelledby="product-h">
     <div class="wrap">
-      <h2 id="integrations-h">{h.integrations.h2}</h2>
-      <p class="section-intro">{h.integrations.intro}</p>
-      <ul class="cards cards-3">
+      <div class="sec-h">
+        <p class="eyebrow">{h.product.eyebrow}</p>
+        <h2 id="product-h">{h.product.h2}</h2>
+        <p>{h.product.intro}</p>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <div>
+            <h3>{h.product.today.h3}</h3>
+            <p>{h.product.today.text}</p>
+            <ul class="ticks">
+              {h.product.today.ticks.map((x) => <li>{x}</li>)}
+            </ul>
+          </div>
+          <Shot src={shots.todayDesktop} alt={h.product.today.shot.alt} kind="desktop" class="win" sizes="(min-width: 76rem) 560px, (min-width: 48rem) 46vw, 1px" />
+        </div>
+        <div class="pair">
+          <div class="row">
+            <Shot src={shots.projects} alt={h.product.projects.shot.alt} kind="phone" />
+            <div>
+              <h3>{h.product.projects.h3}</h3>
+              <p>{h.product.projects.text}</p>
+            </div>
+          </div>
+          <div class="row">
+            <Shot src={shots.rooms} alt={h.product.rooms.shot.alt} kind="phone" />
+            <div>
+              <h3>{h.product.rooms.h3}</h3>
+              <p>{h.product.rooms.text}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="also" aria-label={h.product.alsoLabel}>
+        {h.product.also.map((a) => <div><dt>{a.title}</dt><dd>{a.text}</dd></div>)}
+      </dl>
+      <p class="note">{h.product.note}</p>
+    </div>
+  </section>
+
+  <section class="sec" id="integrations" aria-labelledby="int-h">
+    <div class="wrap">
+      <div class="sec-h">
+        <p class="eyebrow">{h.integrations.eyebrow}</p>
+        <h2 id="int-h">{h.integrations.h2}</h2>
+        <p>{h.integrations.intro}</p>
+      </div>
+      <div class="integ">
         {h.integrations.list.map((i) => (
-          <li class="card card-integration"><h3>{i.title}</h3><p>{i.text}</p></li>
+          <article class="int">
+            <h3>{i.title}</h3>
+            <p class="flow" role="img" aria-label={i.flowLabel}>
+              <b>{i.flow[0]}</b> <span aria-hidden="true">{i.flow[1]}</span> <b>{i.flow[2]}</b>
+            </p>
+            <p>{i.text}</p>
+            <span class={pillClass[i.state]}>{i.pill}</span>
+            {i.links && (
+              <p class="more">
+                {i.links.map((l, n) => <Fragment>{n > 0 && " · "}<a class="more" href={l.href}>{l.label}</a></Fragment>)}
+              </p>
+            )}
+          </article>
         ))}
-      </ul>
-      <p class="note">{h.integrations.later} {h.integrations.ios}</p>
+      </div>
     </div>
   </section>
 
-  <section class="section section-dark" id="principles" aria-labelledby="principles-h">
+  <section class="sec dark" id="self-hosted" aria-labelledby="sh-h">
     <div class="wrap">
-      <h2 id="principles-h">{h.principles.h2}</h2>
-      <p class="section-intro">{h.principles.intro}</p>
-      <ul class="principles">
-        {h.principles.list.map((p) => (
-          <li><h3>{p.title}</h3><p>{p.text}</p></li>
-        ))}
-      </ul>
+      <div class="sec-h">
+        <p class="eyebrow">{h.private.eyebrow}</p>
+        <h2 id="sh-h">{h.private.h2}</h2>
+      </div>
+      <div class="split">
+        <ul class="princ">
+          {h.private.list.map((p) => <li><h3>{p.title}</h3><p>{p.text}</p></li>)}
+        </ul>
+        <figure class="code">
+          <div class="bar">{h.private.codeTitle}</div>
+<pre tabindex="0"><code>services:
+  housecairn:
+    image: ghcr.io/housecairn/housecairn:edge
+    env_file: deploy/production.env
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: [housecairn-data:/data]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]</code></pre>
+          <figcaption>{h.private.caption}</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="open-source" aria-labelledby="open-h">
-    <div class="wrap two-col">
-      <div>
+  <section class="sec" id="status" aria-labelledby="st-h">
+    <div class="wrap">
+      <div class="sec-h">
+        <p class="eyebrow">{h.status.eyebrow}</p>
+        <h2 id="st-h">{h.status.h2}</h2>
+        <p>{h.status.intro}</p>
+      </div>
+      <Steps lang={lang} />
+      <p class="honest"><strong>{h.status.honestStrong}</strong> {h.status.honest}</p>
+      <a class="more" href={localePath(lang, "roadmap")}>{h.status.roadmapLink}</a>
+    </div>
+  </section>
+
+  <section class="sec" id="open" aria-labelledby="open-h">
+    <div class="wrap">
+      <div class="sec-h">
+        <p class="eyebrow">{h.open.eyebrow}</p>
         <h2 id="open-h">{h.open.h2}</h2>
-        <p>{h.open.license}</p>
-        <p>{h.open.ai} {h.open.review}</p>
-        <a class="btn btn-primary" href={LINKS.source}>{h.open.ctaSource}</a>
       </div>
-      <aside class="callout" aria-labelledby="security-h">
-        <h3 id="security-h">{t.footer.security}</h3>
-        <p>{h.open.security}</p>
-        <a href={LINKS.security}>{h.open.securityLink}</a>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="get-started" aria-labelledby="start-h">
-    <div class="wrap two-col">
-      <div>
-        <h2 id="start-h">{h.start.h2}</h2>
-        <p>{h.start.text}</p>
-        <a class="btn btn-primary" href={docsHref}>{h.start.docsCta}</a>
-        <p class="small">{h.start.docsNote} <a href={otherDocsHref} hreflang={otherDocsLang} lang={otherDocsLang}>{h.start.docsFr}</a></p>
-      </div>
-      <div id="support">
-        <h2>{h.support.h2}</h2>
-        <p>{h.support.text}</p>
-        <a class="btn btn-sand" href={LINKS.support}>{h.support.cta}</a>
+      <div class="open">
+        {h.open.list.map((o) => <div><h3>{o.title}</h3><p>{o.text}</p><a class="more" href={o.href}>{o.link}</a></div>)}
       </div>
     </div>
   </section>

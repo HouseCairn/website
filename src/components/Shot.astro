@@ -1,28 +1,35 @@
 ---
-// Real application screenshot, served as AVIF and WebP with a PNG fallback.
-// Dimensions come from the source file, so the layout does not shift.
+// Real application screenshot in a device frame, served as AVIF and WebP with a PNG
+// fallback. Dimensions come from the source file, so the layout does not shift.
 import { Picture } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
 interface Props {
   src: ImageMetadata;
+  /** Empty when the same screen is described elsewhere (decorative duplicate). */
   alt: string;
   kind: "phone" | "desktop";
   eager?: boolean;
+  class?: string;
+  /** Overrides the default `sizes`, e.g. for a frame hidden on small screens. */
+  sizes?: string;
 }
-const { src, alt, kind, eager = false } = Astro.props;
-const widths = kind === "phone" ? [390, 780] : [640, 1280];
-const sizes = kind === "phone" ? "(min-width: 60rem) 300px, 70vw" : "(min-width: 60rem) 520px, 92vw";
+const { src, alt, kind, eager = false, class: extra = "", sizes: given } = Astro.props;
+const widths = kind === "phone" ? [282, 564] : [700, 1400];
+const sizes = given ?? (kind === "phone"
+  ? "(min-width: 48rem) 282px, min(78vw, 282px)"
+  : "(min-width: 76rem) 1000px, (min-width: 64rem) 86vw, 92vw");
+const picture = { src, alt, widths, sizes, formats: ["avif", "webp"] as ("avif" | "webp")[], fallbackFormat: "png" as const,
+  loading: eager ? ("eager" as const) : ("lazy" as const), decoding: "async" as const,
+  fetchpriority: eager ? ("high" as const) : undefined };
 ---
-<Picture
-  src={src}
-  alt={alt}
-  widths={widths}
-  sizes={sizes}
-  formats={["avif", "webp"]}
-  fallbackFormat="png"
-  loading={eager ? "eager" : "lazy"}
-  decoding={eager ? "sync" : "async"}
-  fetchpriority={eager ? "high" : undefined}
-  class={`shot shot-${kind}`}
-/>
+{kind === "phone" ? (
+  <figure class={`phone ${extra}`} aria-hidden={alt ? undefined : "true"}>
+    <Picture {...picture} />
+  </figure>
+) : (
+  <figure class={`browser ${extra}`} aria-hidden={alt ? undefined : "true"}>
+    <div class="bar"><i></i><i></i><i></i><span>housecairn.example.com</span></div>
+    <Picture {...picture} />
+  </figure>
+)}

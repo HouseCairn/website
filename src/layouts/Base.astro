@@ -1,10 +1,10 @@
 ---
-import "@fontsource/manrope/latin-400.css";
-import "@fontsource/manrope/latin-600.css";
-import "@fontsource/manrope/latin-700.css";
-import "@fontsource/manrope/latin-800.css";
+import "../styles/font.css";
+import "../styles/tokens.css";
 import "../styles/global.css";
 import { ui, LINKS, localePath, type Lang } from "../i18n/ui";
+// The same file as in font.css: preloaded so that text does not shift when it arrives.
+import fontUrl from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 
 interface Props {
   lang: Lang;
@@ -33,10 +33,12 @@ const alternates =
 const ogImage = new URL(`/og/og-${lang}.png`, site).href;
 const ogAlt = lang === "en"
   ? "HouseCairn logo with the tagline: what to do in the house, where, when, with what, and for how much."
-  : "Logo HouseCairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
+  : "Logo HouseCairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
 const switchHref = localePath(other, slug ?? "");
 const home = localePath(lang);
 const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
+const onHome = slug === "";
+const anchor = (id: string) => (onHome ? `#${id}` : `${home}#${id}`);
 ---
 
 <!doctype html>
@@ -45,6 +47,8 @@ const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
+
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
@@ -73,22 +77,19 @@ const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
   </head>
   <body>
     <a class="skip" href="#main">{t.skip}</a>
-    <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="brand" href={home}>
-          <img src="/brand/housecairn-logo.svg" width="167" height="48" alt="HouseCairn" />
+    <header class="hdr">
+      <div class="wrap">
+        <a class="brand" href={home} aria-label={t.nav.home}>
+          <img src="/brand/housecairn-logo.svg" width="167" height="48" alt="" />
         </a>
         <nav class="nav" aria-label={t.nav.menu}>
           <ul>
-            <li><a href={`${home}#features`}>{t.nav.features}</a></li>
-            <li><a href={`${home}#integrations`}>{t.nav.integrations}</a></li>
-            <li><a href={`${home}#principles`}>{t.nav.principles}</a></li>
-            <li><a href={localePath(lang, "roadmap")} aria-current={slug === "roadmap" ? "page" : undefined}>{t.nav.roadmap}</a></li>
+            <li class="opt"><a href={anchor("product")}>{t.nav.product}</a></li>
+            <li class="opt"><a href={anchor("integrations")}>{t.nav.integrations}</a></li>
+            <li class="opt"><a href={localePath(lang, "roadmap")} aria-current={slug === "roadmap" ? "page" : undefined}>{t.nav.roadmap}</a></li>
             <li><a href={docsHref}>{t.nav.docs}</a></li>
             <li><a href={LINKS.source}>GitHub</a></li>
-            <li>
-              <a class="lang" href={switchHref} hreflang={other} lang={other} aria-label={t.switchAria}>{t.switchLabel}</a>
-            </li>
+            <li><a class="lang" href={switchHref} hreflang={other} lang={other} aria-label={t.switchAria}>{t.switchShort}</a></li>
           </ul>
         </nav>
       </div>
@@ -98,14 +99,9 @@ const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <div class="footer-brand">
-          <img src="/brand/housecairn-logo-fond-sombre.svg" width="167" height="48" alt="HouseCairn" loading="lazy" />
-          <p>{t.footer.by}</p>
-          <p>{t.footer.license}</p>
-        </div>
-        <ul class="footer-links">
+    <footer class="ftr">
+      <div class="wrap">
+        <ul>
           <li><a href={LINKS.source}>{t.footer.source}</a></li>
           <li><a href={docsHref}>{t.footer.docs}</a></li>
           <li><a href={localePath(lang, "roadmap")}>{t.footer.roadmap}</a></li>
@@ -113,7 +109,7 @@ const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
           <li><a href={LINKS.support}>{t.footer.support}</a></li>
           <li><a href={switchHref} hreflang={other} lang={other}>{t.switchLabel}</a></li>
         </ul>
-        <p class="footer-note">{t.footer.noTracking}</p>
+        <p>{t.footer.by} {t.footer.noTracking}</p>
       </div>
     </footer>
   </body>
