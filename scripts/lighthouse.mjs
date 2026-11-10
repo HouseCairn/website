@@ -5,8 +5,8 @@
 // Chrome is found by chrome-launcher, or set CHROME_PATH. LIGHTHOUSE_REPORT_ONLY=1 prints
 // the scores without failing (for machines whose CPU is not representative).
 import { createServer } from "node:http";
-import { readFile, stat, writeFile, mkdir } from "node:fs/promises";
-import { join, extname, normalize } from "node:path";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { join, extname, resolve, sep } from "node:path";
 import * as chromeLauncher from "chrome-launcher";
 import lighthouse from "lighthouse";
 import desktopConfig from "lighthouse/core/config/desktop-config.js";
@@ -18,11 +18,14 @@ const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".woff2
   ".webp": "image/webp", ".png": "image/png", ".svg": "image/svg+xml", ".ico": "image/x-icon", ".xml": "application/xml", ".txt": "text/plain" };
 
 // A small static server: Lighthouse needs HTTP, and the site has no server code.
+// Paths ending in "/" are pages (index.html); nothing outside dist/ is ever served.
+const ROOT = resolve(DIST);
 const server = createServer(async (req, res) => {
-  let path = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)).replace(/^(\.\.[/\\])+/, "");
-  let file = join(DIST, path);
+  let path = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  if (path.endsWith("/")) path += "index.html";
+  const file = resolve(ROOT, `.${path}`);
   try {
-    if ((await stat(file)).isDirectory()) file = join(file, "index.html");
+    if (!file.startsWith(ROOT + sep)) throw new Error("outside dist");
     const body = await readFile(file);
     res.writeHead(200, { "content-type": TYPES[extname(file)] ?? "application/octet-stream", "cache-control": "max-age=600" });
     res.end(body);
