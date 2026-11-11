@@ -171,7 +171,7 @@ export const ui: Record<Lang, Dict> = {
         eyebrow: "Self-hosted and private",
         h2: "Your house is private. The software is built around that.",
         list: [
-          { title: "No telemetry, no account", text: "No outgoing call unless you configure one." },
+          { title: "No telemetry, no outside account", text: "No outgoing call unless you configure one." },
           { title: "Least privilege", text: "Each integration and each token gets only the access it needs." },
           { title: "One source of truth", text: "HouseCairn keeps the plan and a reference, never a second copy." },
           { title: "Secure by default", text: "Read-only container, no Linux capability, passkeys, a strict content security policy." },
@@ -325,7 +325,7 @@ export const ui: Record<Lang, Dict> = {
         eyebrow: "Auto-hébergé et privé",
         h2: "Votre maison est privée. Le logiciel est conçu autour de ça.",
         list: [
-          { title: "Aucune télémétrie, aucun compte", text: "Aucun appel sortant sauf si vous le configurez." },
+          { title: "Aucune télémétrie, aucun compte extérieur", text: "Aucun appel sortant sauf si vous le configurez." },
           { title: "Moindre privilège", text: "Chaque intégration et chaque jeton n’ont que les accès nécessaires." },
           { title: "Une seule source de vérité", text: "HouseCairn garde le prévu et une référence, jamais une seconde copie." },
           { title: "Sûr par défaut", text: "Conteneur en lecture seule, aucune capacité Linux, clés d’accès, politique de sécurité du contenu stricte." },
