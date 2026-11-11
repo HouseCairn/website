@@ -1,5 +1,9 @@
 # housecairn.app
 
+[![Pages](https://github.com/HouseCairn/website/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/HouseCairn/website/actions/workflows/pages.yml?query=branch%3Amain)
+[![License: AGPL-3.0-only](https://img.shields.io/badge/license-AGPL--3.0--only-blue.svg)](LICENSE)
+[![Site](https://img.shields.io/badge/site-housecairn.app-41BDF5)](https://housecairn.app)
+
 The public website of [HouseCairn](https://github.com/HouseCairn/housecairn), a free,
 self-hosted web app for home maintenance and renovation. English at `/`, French at `/fr/`.
 
