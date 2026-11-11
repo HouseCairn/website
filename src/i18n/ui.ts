@@ -103,7 +103,7 @@ export const ui: Record<Lang, Dict> = {
         intro: "Real screenshots of the main branch with demo data. Nothing on this page is drawn or simulated.",
         today: {
           h3: "Today: one list, one tap.",
-          text: "Overdue first, then what is due today, then what is coming. Anyone in the household marks a task done in one tap, and the next one is scheduled on its own.",
+          text: "Overdue first, then what is due today, then what is coming. Any member of the household marks a task done in one tap, and the next one is scheduled on its own.",
           ticks: [
             "Repeat on a fixed date, after the last time, or only in a season",
             "Report a problem in two fields, with a photo if you like",
@@ -257,7 +257,7 @@ export const ui: Record<Lang, Dict> = {
         intro: "De vraies captures de la branche principale, avec des données de démonstration. Rien n’est dessiné ni simulé.",
         today: {
           h3: "Aujourd’hui : une liste, un geste.",
-          text: "D’abord le retard, puis ce qui tombe aujourd’hui, puis ce qui arrive. Chacun dans le foyer coche une tâche en un geste, et la suivante se planifie seule.",
+          text: "D’abord le retard, puis ce qui tombe aujourd’hui, puis ce qui arrive. Chaque membre du foyer coche une tâche en un geste, et la suivante se planifie seule.",
           ticks: [
             "Répéter à date fixe, après la dernière fois, ou seulement pendant une saison",
             "Signaler un problème en deux champs, avec une photo si besoin",
