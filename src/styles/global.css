@@ -54,7 +54,7 @@ a { color: inherit; }
 .nav a:hover { background: var(--color-surface-muted); }
 .nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .3em; }
 .nav .opt { display: none; }
-.nav .lang { border: 1px solid var(--color-border); background: var(--color-surface); }
+.nav .lang { border: 1px solid var(--color-border); background: var(--color-surface); min-width: 44px; justify-content: center; }
 
 /* Buttons */
 .btn {
@@ -66,7 +66,6 @@ a { color: inherit; }
 .btn-p:hover { background: var(--color-primary-hover); }
 .btn-s { border-color: var(--color-border-strong); color: var(--color-slate-deep); background: transparent; }
 .btn-s:hover { background: var(--color-surface); border-color: var(--color-slate); }
-.btn .arr { transition: transform .15s; }
 .btn:hover .arr { transform: translateX(2px); }
 
 /* Hero */
@@ -235,6 +234,7 @@ a.more { display: inline-flex; min-height: 44px; align-items: center; font-weigh
 
 /* Motion: one entrance on the hero frames, only when motion is welcome */
 @media (prefers-reduced-motion: no-preference) {
+  .btn .arr { transition: transform .15s; }
   html { scroll-behavior: smooth; }
   .stage > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
   .stage .phone { animation-delay: .12s; }
