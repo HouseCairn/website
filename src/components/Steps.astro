@@ -1,0 +1,15 @@
+---
+import { ui, type Lang } from "../i18n/ui";
+interface Props { lang: Lang; headingLevel?: "h2" | "h3" }
+const { lang, headingLevel = "h3" } = Astro.props;
+const t = ui[lang];
+const H = headingLevel;
+---
+<ol class="steps">
+  {t.steps.map((s, i) => (
+    <li class={s.state} data-n={String(i + 1)}>
+      <H>{s.title}<span class="state">{t.home.status.states[s.state]}</span></H>
+      <p>{s.text}</p>
+    </li>
+  ))}
+</ol>

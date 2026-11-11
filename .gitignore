@@ -6,3 +6,4 @@ dist/
 .apercus/
 # scratch scripts
 scripts/_*
+lighthouse/
