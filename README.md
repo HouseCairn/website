@@ -88,7 +88,8 @@ base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 ## Deployment
 
 `.github/workflows/pages.yml` builds the site and deploys it to GitHub Pages on every push
-to `main`, with the custom domain `housecairn.app`.
+to `main`. The custom domain `housecairn.app` is a repository setting (Settings, Pages),
+not set by the workflow.
 
 ## Licence
 
