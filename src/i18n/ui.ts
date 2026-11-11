@@ -114,7 +114,7 @@ export const ui: Record<Lang, Dict> = {
         projects: {
           h3: "Projects, with the numbers next to them.",
           text: "Quotes and budget lines planned, committed and paid. Compare projects side by side to decide what comes first, within a yearly envelope.",
-          shot: { alt: "Projects screen on a phone: the yearly budget envelope, filters, the project Repaint the living room planned at 890 euros, and a button to compare ticked projects. Demo data." },
+          shot: { alt: "Projects screen on a phone: no envelope set for this year with a button to set it, filters, the project Repaint the living room planned at 890 euros, and a button to compare ticked projects. Demo data." },
         },
         rooms: {
           h3: "Everything about each room.",
@@ -268,7 +268,7 @@ export const ui: Record<Lang, Dict> = {
         projects: {
           h3: "Les projets, avec les chiffres à côté.",
           text: "Devis et lignes de budget prévues, engagées et payées. Comparez les projets côte à côte pour décider par quoi commencer, dans une enveloppe annuelle.",
-          shot: { alt: "Écran Projets sur téléphone : l’enveloppe budgétaire de l’année, des filtres, le projet Repeindre le salon prévu à 890 euros et un bouton pour comparer les projets cochés. Données de démonstration." },
+          shot: { alt: "Écran Projets sur téléphone : aucune enveloppe fixée pour cette année avec un bouton pour la fixer, des filtres, le projet Repeindre le salon prévu à 890 euros et un bouton pour comparer les projets cochés. Données de démonstration." },
         },
         rooms: {
           h3: "Tout sur chaque pièce.",
