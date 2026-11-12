@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "2.6.2",
-    "lighthouse": "12.8.2"
+    "lighthouse": "13.6.0"
   }
 }
