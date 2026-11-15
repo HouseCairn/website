@@ -243,6 +243,23 @@ a.more { display: inline-flex; min-height: 44px; align-items: center; font-weigh
 .ftr a:hover { text-decoration: underline; }
 
 /* Motion: one entrance on the hero frames, only when motion is welcome */
+/* How it's used: two worked examples, and the video tour (its own page) */
+.steps-list { margin: 1.1rem 0 0; padding-left: 1.4rem; display: grid; gap: .55rem; color: var(--color-text-muted); }
+.steps-list li::marker { color: var(--color-text-sand); font-weight: 800; }
+.shots { display: flex; gap: 1rem; justify-content: center; align-items: flex-start; }
+.shots .phone { width: min(42vw, 240px); }
+.shots .second { margin-top: 3rem; }
+.tour {
+  display: grid; gap: 1rem; margin-top: 3.5rem; padding: 1rem; align-items: center; text-decoration: none;
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface);
+}
+.tour img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.tour-text { color: var(--color-text-muted); }
+.tour-text strong { display: block; margin-bottom: .3rem; color: var(--color-slate); font-size: 1.15rem; }
+.tour:hover strong { text-decoration: underline; text-underline-offset: .2em; }
+.tour-video { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); background: var(--color-slate-deep); }
+.tour-links { margin: 1.5rem 0 0; padding-left: 1.2rem; display: grid; gap: .4rem; }
+
 @media (prefers-reduced-motion: no-preference) {
   .btn .arr { transition: transform .15s; }
   html { scroll-behavior: smooth; }
@@ -252,6 +269,7 @@ a.more { display: inline-flex; min-height: 44px; align-items: center; font-weigh
 }
 
 @media (min-width: 48rem) {
+  .tour { grid-template-columns: 420px 1fr; gap: 2rem; padding: 1.25rem; }
   .row .win { display: grid; }
   .pair .phone { width: min(78vw, 300px); }
   .sec { padding-block: 4.5rem; }

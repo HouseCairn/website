@@ -63,12 +63,13 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 | Path | Content |
 | --- | --- |
 | `src/i18n/ui.ts` | All page text, English and French, same keys |
-| `src/components/Home.astro`, `Roadmap.astro`, `Steps.astro` | Page bodies, shared by both languages |
+| `src/components/Home.astro`, `Roadmap.astro`, `Steps.astro`, `Video.astro` | Page bodies, shared by both languages |
 | `src/components/Shot.astro` | A screenshot in a browser or phone frame: AVIF and WebP, declared dimensions |
 | `src/assets/app/` | Real application screenshots, English and French |
 | `src/styles/` | `tokens.css` (generated), `font.css`, `global.css` |
 | `design/tokens.json` | Copy of the application's design tokens |
-| `src/pages/` | Routes: `/`, `/roadmap/`, `/fr/`, `/fr/roadmap/`, `/404.html` |
+| `src/pages/` | Routes: `/`, `/roadmap/`, `/video/`, `/fr/`, `/fr/roadmap/`, `/fr/video/`, `/404.html` |
+| `public/media/` | The video tour: one MP4 per language of the screens, both with English and French subtitle tracks, the WebVTT files and the posters |
 | `public/` | Logo, favicons, Open Graph images, `robots.txt` |
 | `scripts/` | Tokens, checks, Lighthouse, Open Graph images |
 
@@ -97,6 +98,18 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 4. Check that nothing real is visible, then replace the files in `src/assets/app/`
    (`today-phone`, `today-desktop`, `projects-phone`, `rooms-phone`, `.en.png` and
    `.fr.png`). The build converts them to AVIF and WebP.
+5. The section "How it's used" follows the two examples of the demo home (the descaling of
+   the espresso machine, the bathroom project). Its phone captures (`usage-descaling-phone`,
+   `usage-stock-phone`, `usage-bathroom-phone`) are taken after marking *Descaling* done
+   once, so that the stock shows one filter left, marked low.
+
+## Video tour
+
+`/video/` and `/fr/video/` play an 81-second tour without sound, made from real captures of
+the demo home with zooms, highlights and fades, in the colours and the font of the
+application. The home page only links to it, with a lazy-loaded poster: the video is
+outside the weight budget and the browser fetches it only when the visitor presses play
+(`preload="none"`). Each MP4 carries both subtitle tracks, the page's language first.
 
 ## Checks in CI
 
@@ -118,7 +131,7 @@ script is JSON-LD. A matching policy, for a host that lets you set headers (GitH
 does not):
 
 ```
-default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self';
+default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; media-src 'self';
 base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 ```
 

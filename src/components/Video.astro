@@ -1,0 +1,39 @@
+---
+// The video tour, on its own page so that the home page never loads it: the browser
+// fetches nothing but the poster until the visitor presses play (preload="none").
+import Base from "../layouts/Base.astro";
+import { ui, localePath, type Lang } from "../i18n/ui";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const v = ui[lang].video;
+const other: Lang = lang === "fr" ? "en" : "fr";
+const media = (name: string) => `/media/${name}`;
+const tracks = (lang === "fr" ? ["fr", "en"] : ["en", "fr"]) as Lang[];
+const labels = { en: "English", fr: "Français" } as const;
+---
+<Base lang={lang} title={v.title} description={v.description} slug="video">
+  <section class="page-h">
+    <div class="wrap narrow">
+      <h1>{v.h1}</h1>
+      <p class="lead">{v.lead}</p>
+    </div>
+  </section>
+  <section class="sec" aria-label={v.h1}>
+    <div class="wrap narrow">
+      <video class="tour-video" controls preload="none" width="1920" height="1080"
+        poster={media(`housecairn-tour-poster.${lang}.jpg`)} aria-label={v.label}>
+        <source src={media(`housecairn-tour.${lang}.mp4`)} type="video/mp4" />
+        {tracks.map((t, n) => (
+          <track kind="subtitles" srclang={t} label={labels[t]} src={media(`housecairn-tour.${t}.vtt`)} default={n === 0} />
+        ))}
+        {v.unsupported}
+      </video>
+      <ul class="tour-links">
+        <li><a href={media(`housecairn-tour.${lang}.mp4`)} download>{v.download}</a></li>
+        <li>{v.subtitles}: {tracks.map((t, n) => <Fragment>{n > 0 && " · "}<a href={media(`housecairn-tour.${t}.vtt`)} hreflang={t}>{labels[t]}</a></Fragment>)}</li>
+        <li><a href={media(`housecairn-tour.${other}.mp4`)} hreflang={other}>{v.other}</a></li>
+        <li><a href={localePath(lang)}>{v.back}</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
