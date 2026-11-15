@@ -111,7 +111,7 @@ the same file with French subtitles on by default; the English page has English 
 subtitles, both off by default.
 
 - `public/media/housecairn-tour.mp4`: H.264 High, 1920x1080, 30 fps, AAC 128 kb/s, CRF 25,
-  `+faststart` so that playback starts before the whole file is downloaded. About 22 MB:
+  `+faststart` so that playback starts before the whole file is downloaded. About 24 MB:
   GitHub warns from 50 MiB per file and blocks from 100 MiB, and a Pages site may weigh up
   to 1 GB.
 - `public/media/housecairn-tour.en.vtt` and `.fr.vtt`: the subtitles, timed on the English

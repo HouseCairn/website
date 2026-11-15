@@ -270,7 +270,7 @@ export const ui: Record<Lang, Dict> = {
       "lead": "The essentials, then the two examples of the home page, in two minutes. Narrated in English, with English and French subtitles. Filmed in the real application, with demo data.",
       "label": "Video tour of HouseCairn, narrated in English, with subtitles",
       "unsupported": "Your browser cannot play this video here.",
-      "download": "Download the video (MP4, 22 MB)",
+      "download": "Download the video (MP4, 24 MB)",
       "subtitles": "Subtitles (WebVTT):",
       "back": "Back to the home page"
     },
@@ -483,7 +483,7 @@ export const ui: Record<Lang, Dict> = {
       "lead": "L’essentiel, puis les deux exemples de l’accueil, en deux minutes. Commentée en anglais, sous-titrée en français. Filmée dans la vraie application, avec des données de démonstration.",
       "label": "Visite en vidéo de HouseCairn, commentée en anglais, sous-titrée",
       "unsupported": "Votre navigateur ne peut pas lire cette vidéo ici.",
-      "download": "Télécharger la vidéo (MP4, 22 Mo, en anglais)",
+      "download": "Télécharger la vidéo (MP4, 24 Mo, en anglais)",
       "subtitles": "Sous-titres (WebVTT) :",
       "back": "Retour à l’accueil"
     },
