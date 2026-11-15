@@ -53,7 +53,7 @@ a { color: inherit; }
 }
 .nav a:hover { background: var(--color-surface-muted); }
 .nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .3em; }
-.nav .opt { display: none; }
+.nav .opt, .nav .opt-wide { display: none; }
 .nav .lang { border: 1px solid var(--color-border); background: var(--color-surface); min-width: 44px; justify-content: center; }
 
 /* Buttons */
@@ -284,6 +284,7 @@ a.more { display: inline-flex; min-height: 44px; align-items: center; font-weigh
   .brand img { width: 167px; height: 48px; }
 }
 @media (min-width: 64rem) {
+  .nav .opt-wide { display: list-item; }
   .hero { padding-top: 4.5rem; }
   .hero h1 { max-width: 22ch; }
   .stage { justify-items: stretch; }

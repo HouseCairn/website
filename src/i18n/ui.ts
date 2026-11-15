@@ -34,7 +34,7 @@ export interface Dict {
   htmlLang: string;
   ogLocale: string;
   skip: string;
-  nav: { product: string; integrations: string; status: string; roadmap: string; docs: string; menu: string; home: string };
+  nav: { product: string; usage: string; integrations: string; status: string; roadmap: string; docs: string; menu: string; home: string };
   switchLabel: string;
   switchShort: string;
   switchAria: string;
@@ -86,7 +86,7 @@ export const ui: Record<Lang, Dict> = {
     htmlLang: "en",
     ogLocale: "en_US",
     skip: "Skip to content",
-    nav: { product: "Product", integrations: "Integrations", status: "Status", roadmap: "Roadmap", docs: "Docs", menu: "Main navigation", home: "HouseCairn, home page" },
+    nav: { product: "Product", usage: "Examples", integrations: "Integrations", status: "Status", roadmap: "Roadmap", docs: "Docs", menu: "Main navigation", home: "HouseCairn, home page" },
     switchLabel: "Français",
     switchShort: "FR",
     switchAria: "Lire cette page en français",
@@ -300,7 +300,7 @@ export const ui: Record<Lang, Dict> = {
     htmlLang: "fr",
     ogLocale: "fr_FR",
     skip: "Aller au contenu",
-    nav: { product: "Produit", integrations: "Intégrations", status: "État", roadmap: "Feuille de route", docs: "Docs", menu: "Navigation principale", home: "HouseCairn, accueil" },
+    nav: { product: "Produit", usage: "Exemples", integrations: "Intégrations", status: "État", roadmap: "Feuille de route", docs: "Docs", menu: "Navigation principale", home: "HouseCairn, accueil" },
     switchLabel: "English",
     switchShort: "EN",
     switchAria: "Read this page in English",
