@@ -12,6 +12,14 @@ import projectsPhoneEn from "../assets/app/projects-phone.en.png";
 import projectsPhoneFr from "../assets/app/projects-phone.fr.png";
 import roomsPhoneEn from "../assets/app/rooms-phone.en.png";
 import roomsPhoneFr from "../assets/app/rooms-phone.fr.png";
+import descalingEn from "../assets/app/usage-descaling-phone.en.png";
+import descalingFr from "../assets/app/usage-descaling-phone.fr.png";
+import stockEn from "../assets/app/usage-stock-phone.en.png";
+import stockFr from "../assets/app/usage-stock-phone.fr.png";
+import bathroomEn from "../assets/app/usage-bathroom-phone.en.png";
+import bathroomFr from "../assets/app/usage-bathroom-phone.fr.png";
+import poster from "../assets/tour-poster.webp";
+import { Picture } from "astro:assets";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -20,6 +28,10 @@ const h = t.home;
 const shots = lang === "fr"
   ? { todayPhone: todayPhoneFr, todayDesktop: todayDesktopFr, projects: projectsPhoneFr, rooms: roomsPhoneFr }
   : { todayPhone: todayPhoneEn, todayDesktop: todayDesktopEn, projects: projectsPhoneEn, rooms: roomsPhoneEn };
+const u = h.usage;
+const usage = lang === "fr"
+  ? { descaling: descalingFr, stock: stockFr, bathroom: bathroomFr }
+  : { descaling: descalingEn, stock: stockEn, bathroom: bathroomEn };
 const install = lang === "fr" ? LINKS.installFr : LINKS.install;
 const pillClass = { ok: "pill pill-ok", part: "pill pill-part", planned: "pill" } as const;
 ---
@@ -86,6 +98,46 @@ const pillClass = { ok: "pill pill-ok", part: "pill pill-part", planned: "pill" 
         {h.product.also.map((a) => <div><dt>{a.title}</dt><dd>{a.text}</dd></div>)}
       </dl>
       <p class="note">{h.product.note}</p>
+    </div>
+  </section>
+
+  <section class="sec usage" id="usage" aria-labelledby="usage-h">
+    <div class="wrap">
+      <div class="sec-h">
+        <p class="eyebrow">{u.eyebrow}</p>
+        <h2 id="usage-h">{u.h2}</h2>
+        <p>{u.intro}</p>
+      </div>
+      <div class="rows">
+        <div class="row case">
+          <div>
+            <h3>{u.a.h3}</h3>
+            <ol class="steps-list">
+              {u.a.steps.map((x) => <li>{x}</li>)}
+            </ol>
+          </div>
+          <div class="shots">
+            <Shot src={usage.descaling} alt={u.a.shot.alt} kind="phone" />
+            <Shot src={usage.stock} alt={u.a.stockShot.alt} kind="phone" class="second" />
+          </div>
+        </div>
+        <div class="row case">
+          <div>
+            <h3>{u.b.h3}</h3>
+            <ol class="steps-list">
+              {u.b.steps.map((x) => <li>{x}</li>)}
+            </ol>
+          </div>
+          <div class="shots">
+            <Shot src={usage.bathroom} alt={u.b.shot.alt} kind="phone" />
+          </div>
+        </div>
+      </div>
+      <a class="tour" href={localePath(lang, "video")}>
+        <Picture src={poster} alt={u.tour.poster.alt} widths={[480, 960]} sizes="(min-width: 48rem) 480px, 92vw"
+          formats={["avif", "webp"]} fallbackFormat="webp" loading="lazy" decoding="async" />
+        <span class="tour-text"><strong>{u.tour.label} <span aria-hidden="true">→</span></strong> {u.tour.text}</span>
+      </a>
     </div>
   </section>
 

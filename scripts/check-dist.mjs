@@ -29,15 +29,17 @@ for (const file of html) {
   }
   // Resources the page loads (not links the visitor follows) must come from the site.
   // Canonical and alternate links name the site itself and load nothing.
-  for (const tag of text.match(/<(?:img|source|link|script)\b[^>]*>/gi) ?? []) {
+  for (const tag of text.match(/<(?:img|source|link|script|video|audio|track)\b[^>]*>/gi) ?? []) {
     if (/rel="(canonical|alternate)"/.test(tag)) continue;
-    for (const [, attr, value] of tag.matchAll(/\b(src|srcset|href)="([^"]+)"/g)) {
+    for (const [, attr, value] of tag.matchAll(/\b(src|srcset|href|poster)="([^"]+)"/g)) {
       for (const url of value.split(",").map((part) => part.trim().split(/\s+/)[0])) {
         if (/^(https?:)?\/\//.test(url)) problems.push(`${file}: external ${attr} ${url}`);
       }
     }
   }
   if (/data:[a-z]+\/[a-z0-9.+-]+;base64/i.test(text)) problems.push(`${file}: data: URI`);
+  // Media never plays by itself (and so never with sound).
+  if (/<(?:video|audio)\b[^>]*\sautoplay\b/i.test(text)) problems.push(`${file}: autoplay`);
 }
 const js = files.filter((f) => [".js", ".mjs"].includes(extname(f)));
 if (js.length) problems.push(`JavaScript files: ${js.join(", ")}`);

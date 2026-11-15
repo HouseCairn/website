@@ -89,6 +89,7 @@ const anchor = (id: string) => (onHome ? `#${id}` : `${home}#${id}`);
         <nav class="nav" aria-label={t.nav.menu}>
           <ul>
             <li class="opt"><a href={anchor("product")}>{t.nav.product}</a></li>
+            <li class="opt-wide"><a href={anchor("usage")}>{t.nav.usage}</a></li>
             <li class="opt"><a href={anchor("integrations")}>{t.nav.integrations}</a></li>
             <li class="opt"><a href={localePath(lang, "roadmap")} aria-current={slug === "roadmap" ? "page" : undefined}>{t.nav.roadmap}</a></li>
             <li><a href={docsHref}>{t.nav.docs}</a></li>

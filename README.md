@@ -63,12 +63,13 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 | Path | Content |
 | --- | --- |
 | `src/i18n/ui.ts` | All page text, English and French, same keys |
-| `src/components/Home.astro`, `Roadmap.astro`, `Steps.astro` | Page bodies, shared by both languages |
+| `src/components/Home.astro`, `Roadmap.astro`, `Steps.astro`, `Video.astro` | Page bodies, shared by both languages |
 | `src/components/Shot.astro` | A screenshot in a browser or phone frame: AVIF and WebP, declared dimensions |
 | `src/assets/app/` | Real application screenshots, English and French |
 | `src/styles/` | `tokens.css` (generated), `font.css`, `global.css` |
 | `design/tokens.json` | Copy of the application's design tokens |
-| `src/pages/` | Routes: `/`, `/roadmap/`, `/fr/`, `/fr/roadmap/`, `/404.html` |
+| `src/pages/` | Routes: `/`, `/roadmap/`, `/video/`, `/fr/`, `/fr/roadmap/`, `/fr/video/`, `/404.html` |
+| `public/media/` | The video tour: one MP4 narrated in English, its English and French WebVTT subtitles, and its poster |
 | `public/` | Logo, favicons, Open Graph images, `robots.txt` |
 | `scripts/` | Tokens, checks, Lighthouse, Open Graph images |
 
@@ -97,6 +98,30 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 4. Check that nothing real is visible, then replace the files in `src/assets/app/`
    (`today-phone`, `today-desktop`, `projects-phone`, `rooms-phone`, `.en.png` and
    `.fr.png`). The build converts them to AVIF and WebP.
+5. The section "How it's used" follows the two examples of the demo home (the descaling of
+   the espresso machine, the bathroom project). Its phone captures (`usage-descaling-phone`,
+   `usage-stock-phone`, `usage-bathroom-phone`) are taken after marking *Descaling* done
+   once, so that the stock shows one filter left, marked low.
+
+## Video tour
+
+`/video/` and `/fr/video/` play a two-minute tour narrated in English, filmed in the demo
+home of the application, in its colours and font. There is one video: the French page shows
+the same file with French subtitles on by default; the English page has English and French
+subtitles, both off by default.
+
+- `public/media/housecairn-tour.mp4`: H.264 High, 1920x1080, 30 fps, AAC 128 kb/s, CRF 25,
+  `+faststart` so that playback starts before the whole file is downloaded. About 24 MB:
+  GitHub warns from 50 MiB per file and blocks from 100 MiB, and a Pages site may weigh up
+  to 1 GB.
+- `public/media/housecairn-tour.en.vtt` and `.fr.vtt`: the subtitles, timed on the English
+  voice, at most two lines of 42 characters and one to six seconds per cue. The French
+  track translates what the English voice says.
+- `public/media/housecairn-tour-poster.webp` (and `src/assets/tour-poster.webp` for the
+  home page): a frame of the Today screen.
+
+The player has `preload="metadata"` and never starts by itself. The home page only links to
+the video page, with a lazy-loaded poster, so the video stays outside its weight budget.
 
 ## Checks in CI
 
@@ -105,10 +130,12 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 - the design tokens match the application's `main`;
 - the build;
 - `npm run check`: no inline `<style>`, no `style=` attribute, no script other than the
-  JSON-LD block, no `data:` URI, no resource from another site, no JavaScript file, and the
-  budget of the home page (HTML 20 KB and CSS 12 KB compressed, one font file of 30 KB at most);
+  JSON-LD block, no `data:` URI, no resource from another site (posters and subtitle tracks
+  included), no `autoplay`, no JavaScript file, and the budget of the home page (HTML 20 KB
+  and CSS 12 KB compressed, one font file of 30 KB at most);
 - `npm run lighthouse`: 100 in SEO and accessibility, at least 95 in the other categories,
   mobile and desktop, English and French, at most 200 KB transferred on mobile and no JavaScript.
+  A first run of the home page, not counted, warms up Chrome.
 
 ## Content Security Policy
 
@@ -118,7 +145,7 @@ script is JSON-LD. A matching policy, for a host that lets you set headers (GitH
 does not):
 
 ```
-default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self';
+default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; media-src 'self';
 base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 ```
 

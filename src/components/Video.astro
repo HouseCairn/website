@@ -1,0 +1,41 @@
+---
+// The video tour, on its own page so that the home page never loads it. One video,
+// narrated in English, with English and French subtitles. The browser fetches the poster
+// and the first bytes of the file for its duration (preload="metadata"), nothing more
+// until the visitor presses play; it never starts by itself.
+import Base from "../layouts/Base.astro";
+import { ui, localePath, type Lang } from "../i18n/ui";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const v = ui[lang].video;
+const media = (name: string) => `/media/${name}`;
+// The page's language first. French subtitles are on by default on the French page; on the
+// English page no track is on, since the voice is in English.
+const tracks = (lang === "fr" ? ["fr", "en"] : ["en", "fr"]) as Lang[];
+const labels = { en: "English", fr: "Français" } as const;
+---
+<Base lang={lang} title={v.title} description={v.description} slug="video">
+  <section class="page-h">
+    <div class="wrap narrow">
+      <h1>{v.h1}</h1>
+      <p class="lead">{v.lead}</p>
+    </div>
+  </section>
+  <section class="sec" aria-label={v.h1}>
+    <div class="wrap narrow">
+      <video class="tour-video" controls preload="metadata" playsinline width="1920" height="1080"
+        poster={media("housecairn-tour-poster.webp")} aria-label={v.label}>
+        <source src={media("housecairn-tour.mp4")} type="video/mp4" />
+        {tracks.map((t) => (
+          <track kind="subtitles" srclang={t} label={labels[t]} src={media(`housecairn-tour.${t}.vtt`)} default={lang === "fr" && t === "fr"} />
+        ))}
+        {v.unsupported}
+      </video>
+      <ul class="tour-links">
+        <li><a href={media("housecairn-tour.mp4")} download hreflang="en">{v.download}</a></li>
+        <li>{v.subtitles} {tracks.map((t, n) => <Fragment>{n > 0 && " · "}<a href={media(`housecairn-tour.${t}.vtt`)} hreflang={t}>{labels[t]}</a></Fragment>)}</li>
+        <li><a href={localePath(lang)}>{v.back}</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>

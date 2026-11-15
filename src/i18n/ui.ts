@@ -34,7 +34,7 @@ export interface Dict {
   htmlLang: string;
   ogLocale: string;
   skip: string;
-  nav: { product: string; integrations: string; status: string; roadmap: string; docs: string; menu: string; home: string };
+  nav: { product: string; usage: string; integrations: string; status: string; roadmap: string; docs: string; menu: string; home: string };
   switchLabel: string;
   switchShort: string;
   switchAria: string;
@@ -67,9 +67,16 @@ export interface Dict {
     private: { eyebrow: string; h2: string; list: Item[]; codeTitle: string; caption: string };
     status: { eyebrow: string; h2: string; intro: string; states: Record<StepState, string>; honestStrong: string; honest: string; roadmapLink: string };
     open: { eyebrow: string; h2: string; list: (Item & { link: string; href: string })[] };
+    usage: {
+      eyebrow: string; h2: string; intro: string;
+      a: { h3: string; steps: string[]; shot: Shot; stockShot: Shot };
+      b: { h3: string; steps: string[]; shot: Shot };
+      tour: { label: string; text: string; poster: Shot };
+    };
   };
   steps: (Item & { state: StepState })[];
   roadmap: { title: string; description: string; h1: string; lead: string; laterH2: string; later: string[]; followCta: string };
+  video: { title: string; description: string; h1: string; lead: string; label: string; unsupported: string; download: string; subtitles: string; back: string };
   notFound: { title: string; h1: string; text: string; back: string };
   footer: { by: string; source: string; docs: string; roadmap: string; security: string; support: string; noTracking: string };
 }
@@ -79,7 +86,7 @@ export const ui: Record<Lang, Dict> = {
     htmlLang: "en",
     ogLocale: "en_US",
     skip: "Skip to content",
-    nav: { product: "Product", integrations: "Integrations", status: "Status", roadmap: "Roadmap", docs: "Docs", menu: "Main navigation", home: "HouseCairn, home page" },
+    nav: { product: "Product", usage: "Examples", integrations: "Integrations", status: "Status", roadmap: "Roadmap", docs: "Docs", menu: "Main navigation", home: "HouseCairn, home page" },
     switchLabel: "Français",
     switchShort: "FR",
     switchAria: "Lire cette page en français",
@@ -140,6 +147,47 @@ export const ui: Record<Lang, Dict> = {
           { title: "Built for the phone", text: "Bottom navigation and large touch targets; the same app on a computer." },
         ],
         note: "These features are on the main branch. Released versions are alpha.",
+      },
+      usage: {
+        "eyebrow": "How it's used",
+        "h2": "Two jobs, from start to end.",
+        "intro": "Each feature named here is on the main branch. Real screenshots of the application, with demo data.",
+        "a": {
+          "h3": "Descaling the espresso machine",
+          "steps": [
+            "A Descaling task, every three months after the last time.",
+            "It belongs to the espresso machine of the kitchen.",
+            "It uses one water filter at €7.90, taken from the stock each time you tap Done.",
+            "The budget plans it at €31.60 a year.",
+            "The stock goes down, and the filter shows as low before you run out."
+          ],
+          "shot": {
+            "alt": "The Descaling task on a phone: €7.90 each time, all of it from the stock, €31.60 a year, and one water filter needed with one left in stock. Demo data."
+          },
+          "stockShot": {
+            "alt": "The stock list on a phone: the water filter, one piece left in the kitchen's top cupboard, marked Low. Demo data."
+          }
+        },
+        "b": {
+          "h3": "Redoing the bathroom",
+          "steps": [
+            "The project holds its tasks: choose the tiles, remove the old bathtub.",
+            "Two plumbers' quotes, compared; the one at €2,850 is accepted on the plumber's budget line.",
+            "Inspiration links stay with the project.",
+            "An envelope for the year: €6,000 for the projects and the upkeep.",
+            "Planned €4,200, committed €2,850, paid €480."
+          ],
+          "shot": {
+            "alt": "The budget of the bathroom project on a phone: tiles planned €1,200 with €480 paid, plumber planned €3,000 with €2,850 committed, and in total €870 left. Demo data."
+          }
+        },
+        "tour": {
+          "label": "Watch the video tour",
+          "text": "Two minutes, narrated in English, with English and French subtitles. The video loads only when you play it.",
+          "poster": {
+            "alt": "Poster of the video tour: the title Your day, sorted, the labels Overdue, Today and Coming up, and the Today screen of the application on a phone."
+          }
+        }
       },
       integrations: {
         eyebrow: "Integrations",
@@ -215,6 +263,17 @@ export const ui: Record<Lang, Dict> = {
       { state: "next", title: "Public v0.x", text: "First releases for self-hosters." },
       { state: "next", title: "v1.0", text: "The planned feature set, complete." },
     ],
+    video: {
+      "title": "Video tour · HouseCairn",
+      "description": "A two-minute tour of HouseCairn: the essentials, then two examples, descaling an espresso machine and redoing a bathroom. Narrated in English, with English and French subtitles.",
+      "h1": "Video tour",
+      "lead": "The essentials, then the two examples of the home page, in two minutes. Narrated in English, with English and French subtitles. Filmed in the real application, with demo data.",
+      "label": "Video tour of HouseCairn, narrated in English, with subtitles",
+      "unsupported": "Your browser cannot play this video here.",
+      "download": "Download the video (MP4, 24 MB)",
+      "subtitles": "Subtitles (WebVTT):",
+      "back": "Back to the home page"
+    },
     roadmap: {
       title: "Roadmap · HouseCairn",
       description: "The milestones of HouseCairn, from the first repository to version 1.0. No dates: each step is done when it is ready.",
@@ -240,7 +299,7 @@ export const ui: Record<Lang, Dict> = {
     htmlLang: "fr",
     ogLocale: "fr_FR",
     skip: "Aller au contenu",
-    nav: { product: "Produit", integrations: "Intégrations", status: "État", roadmap: "Feuille de route", docs: "Docs", menu: "Navigation principale", home: "HouseCairn, accueil" },
+    nav: { product: "Produit", usage: "Exemples", integrations: "Intégrations", status: "État", roadmap: "Feuille de route", docs: "Docs", menu: "Navigation principale", home: "HouseCairn, accueil" },
     switchLabel: "English",
     switchShort: "EN",
     switchAria: "Read this page in English",
@@ -301,6 +360,47 @@ export const ui: Record<Lang, Dict> = {
           { title: "Pensée pour le téléphone", text: "Navigation en bas et grandes zones tactiles ; la même application sur ordinateur." },
         ],
         note: "Ces fonctions sont dans la branche principale. Les versions publiées sont en alpha.",
+      },
+      usage: {
+        "eyebrow": "Comment ça s’utilise",
+        "h2": "Deux travaux, du début à la fin.",
+        "intro": "Chaque fonction citée ici est dans la branche principale. Vraies captures de l’application, avec des données de démonstration.",
+        "a": {
+          "h3": "Le détartrage de la machine expresso",
+          "steps": [
+            "Une tâche Détartrage, trois mois après la dernière fois.",
+            "Elle est rattachée à la machine expresso de la cuisine.",
+            "Elle utilise un filtre à eau à 7,90 €, pris dans le stock à chaque Fait.",
+            "Le budget la compte à 31,60 € par an.",
+            "Le stock baisse, et le filtre est signalé bas avant d’en manquer."
+          ],
+          "shot": {
+            "alt": "La tâche Détartrage sur un téléphone : 7,90 € par fois, entièrement en articles du stock, 31,60 € par an, et un filtre à eau demandé avec un seul encore en stock. Données de démonstration."
+          },
+          "stockShot": {
+            "alt": "La liste du matériel sur un téléphone : le filtre à eau, une pièce restante dans le placard du haut de la cuisine, marqué Basse. Données de démonstration."
+          }
+        },
+        "b": {
+          "h3": "La rénovation de la salle de bain",
+          "steps": [
+            "Le projet porte ses tâches : choisir le carrelage, déposer l’ancienne baignoire.",
+            "Deux devis de plombier, comparés ; celui à 2 850 € est accepté sur la ligne du plombier.",
+            "Les liens d’inspiration restent avec le projet.",
+            "Une enveloppe pour l’année : 6 000 € pour les projets et l’entretien.",
+            "Prévu 4 200 €, engagé 2 850 €, payé 480 €."
+          ],
+          "shot": {
+            "alt": "Le budget du projet de salle de bain sur un téléphone : carrelage prévu 1 200 € dont 480 € payés, plombier prévu 3 000 € dont 2 850 € engagés, et au total 870 € restants. Données de démonstration."
+          }
+        },
+        "tour": {
+          "label": "Voir la visite en vidéo",
+          "text": "Deux minutes, commentées en anglais, sous-titrées en français et en anglais. La vidéo ne se charge que si vous la lancez.",
+          "poster": {
+            "alt": "Affiche de la visite en vidéo, en anglais : le titre « Your day, sorted », les étiquettes du jour (en retard, aujourd’hui, à venir) et l’écran Aujourd’hui de l’application sur un téléphone."
+          }
+        }
       },
       integrations: {
         eyebrow: "Intégrations",
@@ -376,6 +476,17 @@ export const ui: Record<Lang, Dict> = {
       { state: "next", title: "v0.x publique", text: "Premières versions pour l’auto-hébergement." },
       { state: "next", title: "v1.0", text: "L’ensemble des fonctions prévues, complet." },
     ],
+    video: {
+      "title": "Visite en vidéo · HouseCairn",
+      "description": "Une visite de HouseCairn en deux minutes : l’essentiel, puis deux exemples, le détartrage d’une machine expresso et la rénovation d’une salle de bain. Commentée en anglais, sous-titrée en français et en anglais.",
+      "h1": "Visite en vidéo",
+      "lead": "L’essentiel, puis les deux exemples de l’accueil, en deux minutes. Commentée en anglais, sous-titrée en français. Filmée dans la vraie application, avec des données de démonstration.",
+      "label": "Visite en vidéo de HouseCairn, commentée en anglais, sous-titrée",
+      "unsupported": "Votre navigateur ne peut pas lire cette vidéo ici.",
+      "download": "Télécharger la vidéo (MP4, 24 Mo, en anglais)",
+      "subtitles": "Sous-titres (WebVTT) :",
+      "back": "Retour à l’accueil"
+    },
     roadmap: {
       title: "Feuille de route · HouseCairn",
       description: "Les étapes de HouseCairn, du premier dépôt à la version 1.0. Pas de dates : chaque étape est terminée quand elle est prête.",
