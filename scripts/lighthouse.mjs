@@ -1,5 +1,6 @@
 // Lighthouse on the built site (dist/), home page in English and French, mobile and
-// desktop. Fails when a category scores under 95, when the mobile home page transfers
+// desktop. Fails when SEO or accessibility scores under 100, another category under 95,
+// when the mobile home page transfers
 // more than 200 KB, or when any JavaScript is loaded.
 //   npm run build && npm run lighthouse
 // Chrome is found by chrome-launcher, or set CHROME_PATH. LIGHTHOUSE_REPORT_ONLY=1 prints
@@ -13,6 +14,8 @@ import desktopConfig from "lighthouse/core/config/desktop-config.js";
 
 const DIST = "dist";
 const MIN_SCORE = 95;
+// The home page says what HouseCairn is to search engines and to everyone: no exception there.
+const MIN_STRICT = { seo: 100, accessibility: 100 };
 const MAX_MOBILE_BYTES = 200 * 1024;
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".woff2": "font/woff2", ".avif": "image/avif",
   ".webp": "image/webp", ".png": "image/png", ".svg": "image/svg+xml", ".ico": "image/x-icon", ".xml": "application/xml", ".txt": "text/plain" };
@@ -55,7 +58,10 @@ try {
         lcp_s: +(lhr.audits["largest-contentful-paint"].numericValue / 1000).toFixed(2),
         cls: +lhr.audits["cumulative-layout-shift"].numericValue.toFixed(3), js: script?.transferSize ?? 0 };
       rows.push(row);
-      for (const [k, v] of Object.entries(scores)) if (v < MIN_SCORE) problems.push(`${path} ${form}: ${k} ${v} < ${MIN_SCORE}`);
+      for (const [k, v] of Object.entries(scores)) {
+        const min = MIN_STRICT[k] ?? MIN_SCORE;
+        if (v < min) problems.push(`${path} ${form}: ${k} ${v} < ${min}`);
+      }
       if (form === "mobile" && bytes > MAX_MOBILE_BYTES) problems.push(`${path} mobile: ${Math.round(bytes / 1024)} KB > 200 KB`);
       if (row.js > 0) problems.push(`${path} ${form}: ${row.js} B of JavaScript`);
     }

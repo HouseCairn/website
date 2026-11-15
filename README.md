@@ -4,14 +4,44 @@
 [![License: AGPL-3.0-only](https://img.shields.io/badge/license-AGPL--3.0--only-blue.svg)](LICENSE)
 [![Site](https://img.shields.io/badge/site-housecairn.app-41BDF5)](https://housecairn.app)
 
-The public website of [HouseCairn](https://github.com/HouseCairn/housecairn), a free,
-self-hosted web app for home maintenance and renovation. English at `/`, French at `/fr/`.
+**Plan your home's maintenance and renovation work, room by room.**
 
-![The home page of housecairn.app on a desktop browser: the title "Every job in the house, at the right time.", two buttons, and real screenshots of the Today screen in a browser and on a phone.](docs/screenshot.webp)
+[HouseCairn](https://github.com/HouseCairn/housecairn) keeps the list of everything your house needs, from recurring upkeep
+such as the smoke detector battery to projects such as repainting the living
+room. For each job it knows the room, the date, the supplies and the planned
+cost, and anyone in the household marks it done in one tap. It is free software
+that you host yourself, works on its own, and connects to Home Assistant if you
+use it.
+
+This repository is the public website of HouseCairn, <https://housecairn.app>:
+English at `/`, French at `/fr/`.
+
+![The home page of housecairn.app on a desktop browser: the title "Plan your home's maintenance and renovation work, room by room.", the paragraph that says what HouseCairn does, and the first examples.](docs/screenshot.webp)
+
+For example:
+
+- test the smoke detector every six months, without remembering the last time;
+- clean the ventilation filter every three months, with a warning when the
+  spare filters run low;
+- book the yearly boiler service, with the boiler's model and warranty at hand;
+- repaint the living room, with its quotes and its budget, planned, committed
+  and paid.
 
 Static site built with [Astro](https://astro.build). No JavaScript in the browser, no
 cookies, no analytics and no external resources: the Manrope font is self-hosted
 (one variable file, Latin subset).
+
+## The HouseCairn repositories
+
+- [housecairn](https://github.com/HouseCairn/housecairn): the web application, to install first.
+- [home-assistant-addons](https://github.com/HouseCairn/home-assistant-addons): HouseCairn as a Home Assistant app (add-on).
+- [home-assistant-housecairn](https://github.com/HouseCairn/home-assistant-housecairn): the Home Assistant integration (HACS).
+- [housecairn-mobile](https://github.com/HouseCairn/housecairn-mobile): the phone app for iOS and Android, in development, not on the stores yet.
+- [website](https://github.com/HouseCairn/website): the site <https://housecairn.app> (this repository).
+
+Website: <https://housecairn.app>. Documentation, in English and French:
+<https://docs.housecairn.app>.
+
 
 ## Build and preview
 
@@ -46,8 +76,11 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 
 - **Only what exists.** Every feature named on the site exists on the `main` branch of
   the application; check its code or documentation before adding one. Integrations carry
-  their real state (available, partial, planned). No version has been released yet: the
-  site says so.
+  their real state (available, partial, planned). Released versions are alpha: the site
+  says so.
+- **One message.** The headline, the paragraph and the examples of the first section are
+  those of the [message](https://docs.housecairn.app/developer/message/) of the
+  application's documentation; change them there first.
 - **Real screenshots only.** Nothing is drawn or simulated. Screenshots use the fictional
   demo home of the application, in the page's language.
 - **Same colours as the application.** `npm run tokens` writes `src/styles/tokens.css` from
@@ -74,8 +107,8 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 - `npm run check`: no inline `<style>`, no `style=` attribute, no script other than the
   JSON-LD block, no `data:` URI, no resource from another site, no JavaScript file, and the
   budget of the home page (HTML 20 KB and CSS 12 KB compressed, one font file of 30 KB at most);
-- `npm run lighthouse`: at least 95 in every category, mobile and desktop, English and
-  French, at most 200 KB transferred on mobile and no JavaScript.
+- `npm run lighthouse`: 100 in SEO and accessibility, at least 95 in the other categories,
+  mobile and desktop, English and French, at most 200 KB transferred on mobile and no JavaScript.
 
 ## Content Security Policy
 

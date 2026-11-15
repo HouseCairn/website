@@ -45,6 +45,8 @@ export interface Dict {
     statusText: string;
     h1: string;
     lead: string;
+    examplesLabel: string;
+    examples: string[];
     ctaInstall: string;
     ctaSource: string;
     factsLabel: string;
@@ -82,14 +84,21 @@ export const ui: Record<Lang, Dict> = {
     switchShort: "FR",
     switchAria: "Lire cette page en français",
     home: {
-      title: "HouseCairn: home maintenance and renovation, self-hosted",
+      title: "HouseCairn: plan your home's maintenance and renovation work",
       description:
-        "HouseCairn is a free, self-hosted web app that plans recurring maintenance and renovation projects, room by room, for the whole household: what to do, where, when, with what and for how much.",
-      statusTag: "Pre-release",
-      statusText: "Built in the open, not ready for daily use yet",
-      h1: "Every job in the house, at the right time.",
+        "Plan your home's maintenance and renovation work, room by room: what to do, where, when, with what and for how much. Free, self-hosted, works with Home Assistant.",
+      statusTag: "Alpha",
+      statusText: "Released as 0.x versions, not yet tested in a real home over time",
+      h1: "Plan your home's maintenance and renovation work, room by room.",
       lead:
-        "What to do, where, when, with what and for how much. HouseCairn plans recurring maintenance and renovation projects, room by room, for the whole household, on your own server.",
+        "HouseCairn keeps the list of everything your house needs, from recurring upkeep such as the smoke detector battery to projects such as repainting the living room. For each job it knows the room, the date, the supplies and the planned cost, and anyone in the household marks it done in one tap. It is free software that you host yourself, works on its own, and connects to Home Assistant if you use it.",
+      examplesLabel: "For example",
+      examples: [
+        "Test the smoke detector every six months, without remembering the last time.",
+        "Clean the ventilation filter every three months, with a warning when the spare filters run low.",
+        "Book the yearly boiler service, with the boiler's model and warranty at hand.",
+        "Repaint the living room, with its quotes and its budget, planned, committed and paid.",
+      ],
       ctaInstall: "Read the install guide",
       ctaSource: "View the source on GitHub",
       factsLabel: "Key facts",
@@ -130,7 +139,7 @@ export const ui: Record<Lang, Dict> = {
           { title: "Sign-in", text: "Passkeys, authenticator app, recovery codes and OpenID Connect single sign-on." },
           { title: "Built for the phone", text: "Bottom navigation and large touch targets; the same app on a computer." },
         ],
-        note: "These features are in the main branch. No version has been released yet.",
+        note: "These features are on the main branch. Released versions are alpha.",
       },
       integrations: {
         eyebrow: "Integrations",
@@ -143,7 +152,7 @@ export const ui: Record<Lang, Dict> = {
             flowLabel: "Home Assistant calls HouseCairn",
             text: "An app runs HouseCairn inside Home Assistant (Ingress). A HACS integration shows tasks as sensors and as a to-do list where you mark them done, with a HouseCairn token limited to the homes you choose. HouseCairn never holds a Home Assistant token.",
             state: "ok",
-            pill: "Available · not yet released",
+            pill: "Available · alpha",
             links: [
               { href: LINKS.haApp, label: "The app" },
               { href: LINKS.haIntegration, label: "The integration" },
@@ -185,7 +194,7 @@ export const ui: Record<Lang, Dict> = {
         intro: "No dates are promised: each step is done when it is ready.",
         states: { done: "Done", now: "In progress", next: "Next" },
         honestStrong: "Not ready for real use yet.",
-        honest: "No version has been released yet, and until the first one anything can still change. The edge image follows the main branch and is for testing only.",
+        honest: "Versions 0.x are alpha: what HouseCairn stores can still change between them, so keep a backup. The edge image follows the main branch and is for testing only.",
         roadmapLink: "Read the roadmap",
       },
       open: {
@@ -236,14 +245,21 @@ export const ui: Record<Lang, Dict> = {
     switchShort: "EN",
     switchAria: "Read this page in English",
     home: {
-      title: "HouseCairn : entretien et travaux de la maison, auto-hébergé",
+      title: "HouseCairn : planifiez l’entretien et les travaux de votre maison",
       description:
-        "HouseCairn est une application web libre et auto-hébergée qui planifie l’entretien récurrent et les projets de travaux, pièce par pièce, pour tout le foyer : quoi faire, où, quand, avec quoi et pour combien.",
-      statusTag: "Préversion",
-      statusText: "Développé au grand jour, pas encore prêt pour un usage quotidien",
-      h1: "Chaque chose à faire dans la maison, au bon moment.",
+        "Planifiez l’entretien et les travaux de votre maison, pièce par pièce : quoi faire, où, quand, avec quoi et pour combien. Libre, auto-hébergé, compatible Home Assistant.",
+      statusTag: "Alpha",
+      statusText: "Publié en versions 0.x, pas encore éprouvé dans une vraie maison",
+      h1: "Planifiez l’entretien et les travaux de votre maison, pièce par pièce.",
       lead:
-        "Quoi faire, où, quand, avec quoi et pour combien. HouseCairn planifie l’entretien récurrent et les projets de travaux, pièce par pièce, pour tout le foyer, sur votre propre serveur.",
+        "HouseCairn tient la liste de tout ce dont votre maison a besoin, de l’entretien récurrent comme la pile du détecteur de fumée aux projets comme repeindre le salon. Pour chaque tâche, il connaît la pièce, la date, le matériel et le coût prévu, et chaque membre du foyer la coche en un geste. C’est un logiciel libre que vous hébergez vous-même, qui fonctionne seul et se relie à Home Assistant si vous l’utilisez.",
+      examplesLabel: "Par exemple",
+      examples: [
+        "Tester le détecteur de fumée tous les six mois, sans retenir la dernière fois.",
+        "Nettoyer le filtre de la VMC tous les trois mois, avec une alerte quand les filtres de rechange viennent à manquer.",
+        "Prévoir l’entretien annuel de la chaudière, avec son modèle et sa garantie sous la main.",
+        "Repeindre le salon, avec ses devis et son budget, prévu, engagé et payé.",
+      ],
       ctaInstall: "Lire le guide d’installation",
       ctaSource: "Voir le code sur GitHub",
       factsLabel: "En bref",
@@ -284,7 +300,7 @@ export const ui: Record<Lang, Dict> = {
           { title: "Connexion", text: "Clés d’accès, application d’authentification, codes de récupération et authentification unique OpenID Connect." },
           { title: "Pensée pour le téléphone", text: "Navigation en bas et grandes zones tactiles ; la même application sur ordinateur." },
         ],
-        note: "Ces fonctions sont dans la branche principale. Aucune version n’est encore publiée.",
+        note: "Ces fonctions sont dans la branche principale. Les versions publiées sont en alpha.",
       },
       integrations: {
         eyebrow: "Intégrations",
@@ -297,7 +313,7 @@ export const ui: Record<Lang, Dict> = {
             flowLabel: "Home Assistant appelle HouseCairn",
             text: "Une application fait tourner HouseCairn dans Home Assistant (Ingress). Une intégration HACS affiche les tâches en capteurs et en liste où on les coche, avec un jeton HouseCairn limité aux logements choisis. HouseCairn ne détient jamais de jeton Home Assistant.",
             state: "ok",
-            pill: "Disponible · pas encore publiée",
+            pill: "Disponible · alpha",
             links: [
               { href: LINKS.haApp, label: "L’application" },
               { href: LINKS.haIntegration, label: "L’intégration" },
@@ -339,7 +355,7 @@ export const ui: Record<Lang, Dict> = {
         intro: "Aucune date n’est promise : chaque étape est terminée quand elle est prête.",
         states: { done: "Fait", now: "En cours", next: "À venir" },
         honestStrong: "Pas encore prêt pour un usage réel.",
-        honest: "Aucune version n’est encore publiée, et jusqu’à la première, tout peut encore changer. L’image edge suit la branche principale et ne sert qu’aux tests.",
+        honest: "Les versions 0.x sont en alpha : ce que HouseCairn enregistre peut encore changer d’une version à l’autre, gardez donc une sauvegarde. L’image edge suit la branche principale et ne sert qu’aux tests.",
         roadmapLink: "Lire la feuille de route",
       },
       open: {

@@ -32,8 +32,8 @@ const alternates =
       ];
 const ogImage = new URL(`/og/og-${lang}.png`, site).href;
 const ogAlt = lang === "en"
-  ? "HouseCairn logo with the tagline: what to do in the house, where, when, with what, and for how much."
-  : "Logo HouseCairn avec la phrase : quoi faire dans la maison, où, quand, avec quoi et pour combien.";
+  ? "HouseCairn logo with the headline: plan your home's maintenance and renovation work, room by room."
+  : "Logo HouseCairn avec la phrase : planifiez l’entretien et les travaux de votre maison, pièce par pièce.";
 const switchHref = localePath(other, slug ?? "");
 const home = localePath(lang);
 const docsHref = lang === "fr" ? LINKS.docsFr : LINKS.docs;
@@ -73,6 +73,10 @@ const anchor = (id: string) => (onHome ? `#${id}` : `${home}#${id}`);
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
