@@ -29,6 +29,10 @@ const pillClass = { ok: "pill pill-ok", part: "pill pill-part", planned: "pill" 
       <a class="status" href="#status"><span class="tag">{h.statusTag}</span> {h.statusText}</a>
       <h1 id="h1">{h.h1}</h1>
       <p class="lead">{h.lead}</p>
+      <h2 class="examples-h" id="examples-h">{h.examplesLabel}</h2>
+      <ul class="examples" aria-labelledby="examples-h">
+        {h.examples.map((e) => <li>{e}</li>)}
+      </ul>
       <div class="cta">
         <a class="btn btn-p" href={install}>{h.ctaInstall} <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn btn-s" href={LINKS.source}>{h.ctaSource}</a>

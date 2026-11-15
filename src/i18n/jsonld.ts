@@ -13,6 +13,7 @@ export function softwareJsonLd(lang: Lang, site: URL) {
     operatingSystem: "Linux (Docker)",
     isAccessibleForFree: true,
     license: LINKS.license,
+    installUrl: lang === "fr" ? LINKS.installFr : LINKS.install,
     sameAs: [LINKS.source],
     image: new URL(`/og/og-${lang}.png`, site).href,
     author: { "@type": "Person", name: "Robvred" },

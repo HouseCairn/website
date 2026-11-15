@@ -54,7 +54,13 @@ function woffToSfnt(buf) {
 // resvg-js 2.6 loads fonts from files only: write the unwrapped TTFs to .tmp/ (gitignored).
 const tmpFonts = join(root, ".tmp/og-fonts");
 mkdirSync(tmpFonts, { recursive: true });
+// @fontsource/manrope (static WOFF) is not a dependency of the site: install it for this run
+// (`npm install --no-save @fontsource/manrope`), or point OG_FONT_DIR at a folder holding
+// Manrope as TTF (manrope-regular.ttf, manrope-bold.ttf, manrope-extrabold.ttf), such as
+// assets/fonts/ of HouseCairn/housecairn-mobile.
+const ttfNames = { 400: "regular", 700: "bold", 800: "extrabold" };
 const fontFiles = [400, 700, 800].map((w) => {
+  if (process.env.OG_FONT_DIR) return join(process.env.OG_FONT_DIR, `manrope-${ttfNames[w]}.ttf`);
   const file = join(tmpFonts, `manrope-latin-${w}.ttf`);
   writeFileSync(file, woffToSfnt(readFileSync(join(fontDir, `manrope-latin-${w}-normal.woff`))));
   return file;
@@ -68,11 +74,11 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
 const texts = {
   en: {
-    lines: ["What to do in the house,", "where, when, with what,", "and for how much."],
+    lines: ["Plan your home's", "maintenance and renovation", "work, room by room."],
     foot: "Free and open-source · Self-hosted · housecairn.app",
   },
   fr: {
-    lines: ["Quoi faire dans la maison,", "où, quand, avec quoi", "et pour combien."],
+    lines: ["Planifiez l’entretien et", "les travaux de votre maison,", "pièce par pièce."],
     foot: "Libre et open source · Auto-hébergé · housecairn.app",
   },
 };
