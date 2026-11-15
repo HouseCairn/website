@@ -44,6 +44,10 @@ const chrome = await chromeLauncher.launch({ chromeFlags: ["--headless=new", "--
 const rows = [];
 const problems = [];
 try {
+  // One warm-up run, not counted: on the CI runner the first page measured by a fresh Chrome
+  // scored 90 to 93 in performance ("/" mobile, pull requests #12 and #16) while every other
+  // page of the same run scored 100.
+  await lighthouse(`${origin}/`, { port: chrome.port, output: "json", logLevel: "error" });
   for (const [lang, path] of [["en", "/"], ["fr", "/fr/"]]) {
     for (const form of ["mobile", "desktop"]) {
       const config = form === "desktop" ? desktopConfig : undefined;

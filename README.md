@@ -122,6 +122,7 @@ outside the weight budget and the browser fetches it only when the visitor press
   budget of the home page (HTML 20 KB and CSS 12 KB compressed, one font file of 30 KB at most);
 - `npm run lighthouse`: 100 in SEO and accessibility, at least 95 in the other categories,
   mobile and desktop, English and French, at most 200 KB transferred on mobile and no JavaScript.
+  A first run of the home page, not counted, warms up Chrome.
 
 ## Content Security Policy
 
