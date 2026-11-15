@@ -18,8 +18,7 @@ import stockEn from "../assets/app/usage-stock-phone.en.png";
 import stockFr from "../assets/app/usage-stock-phone.fr.png";
 import bathroomEn from "../assets/app/usage-bathroom-phone.en.png";
 import bathroomFr from "../assets/app/usage-bathroom-phone.fr.png";
-import posterEn from "../assets/tour-poster.en.png";
-import posterFr from "../assets/tour-poster.fr.png";
+import poster from "../assets/tour-poster.webp";
 import { Picture } from "astro:assets";
 
 interface Props { lang: Lang }
@@ -33,7 +32,6 @@ const u = h.usage;
 const usage = lang === "fr"
   ? { descaling: descalingFr, stock: stockFr, bathroom: bathroomFr }
   : { descaling: descalingEn, stock: stockEn, bathroom: bathroomEn };
-const poster = lang === "fr" ? posterFr : posterEn;
 const install = lang === "fr" ? LINKS.installFr : LINKS.install;
 const pillClass = { ok: "pill pill-ok", part: "pill pill-part", planned: "pill" } as const;
 ---
@@ -137,7 +135,7 @@ const pillClass = { ok: "pill pill-ok", part: "pill pill-part", planned: "pill" 
       </div>
       <a class="tour" href={localePath(lang, "video")}>
         <Picture src={poster} alt={u.tour.poster.alt} widths={[480, 960]} sizes="(min-width: 48rem) 480px, 92vw"
-          formats={["avif", "webp"]} fallbackFormat="jpg" loading="lazy" decoding="async" />
+          formats={["avif", "webp"]} fallbackFormat="webp" loading="lazy" decoding="async" />
         <span class="tour-text"><strong>{u.tour.label} <span aria-hidden="true">→</span></strong> {u.tour.text}</span>
       </a>
     </div>

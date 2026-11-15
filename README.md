@@ -69,7 +69,7 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 | `src/styles/` | `tokens.css` (generated), `font.css`, `global.css` |
 | `design/tokens.json` | Copy of the application's design tokens |
 | `src/pages/` | Routes: `/`, `/roadmap/`, `/video/`, `/fr/`, `/fr/roadmap/`, `/fr/video/`, `/404.html` |
-| `public/media/` | The video tour: one MP4 per language of the screens, both with English and French subtitle tracks, the WebVTT files and the posters |
+| `public/media/` | The video tour: one MP4 narrated in English, its English and French WebVTT subtitles, and its poster |
 | `public/` | Logo, favicons, Open Graph images, `robots.txt` |
 | `scripts/` | Tokens, checks, Lighthouse, Open Graph images |
 
@@ -105,11 +105,23 @@ lighthouse` needs Chrome (found automatically, or set `CHROME_PATH`).
 
 ## Video tour
 
-`/video/` and `/fr/video/` play an 81-second tour without sound, made from real captures of
-the demo home with zooms, highlights and fades, in the colours and the font of the
-application. The home page only links to it, with a lazy-loaded poster: the video is
-outside the weight budget and the browser fetches it only when the visitor presses play
-(`preload="none"`). Each MP4 carries both subtitle tracks, the page's language first.
+`/video/` and `/fr/video/` play a two-minute tour narrated in English, filmed in the demo
+home of the application, in its colours and font. There is one video: the French page shows
+the same file with French subtitles on by default; the English page has English and French
+subtitles, both off by default.
+
+- `public/media/housecairn-tour.mp4`: H.264 High, 1920x1080, 30 fps, AAC 128 kb/s, CRF 25,
+  `+faststart` so that playback starts before the whole file is downloaded. About 22 MB:
+  GitHub warns from 50 MiB per file and blocks from 100 MiB, and a Pages site may weigh up
+  to 1 GB.
+- `public/media/housecairn-tour.en.vtt` and `.fr.vtt`: the subtitles, timed on the English
+  voice, at most two lines of 42 characters and one to six seconds per cue. The French
+  track translates what the English voice says.
+- `public/media/housecairn-tour-poster.webp` (and `src/assets/tour-poster.webp` for the
+  home page): a frame of the Today screen.
+
+The player has `preload="metadata"` and never starts by itself. The home page only links to
+the video page, with a lazy-loaded poster, so the video stays outside its weight budget.
 
 ## Checks in CI
 
@@ -118,8 +130,9 @@ outside the weight budget and the browser fetches it only when the visitor press
 - the design tokens match the application's `main`;
 - the build;
 - `npm run check`: no inline `<style>`, no `style=` attribute, no script other than the
-  JSON-LD block, no `data:` URI, no resource from another site, no JavaScript file, and the
-  budget of the home page (HTML 20 KB and CSS 12 KB compressed, one font file of 30 KB at most);
+  JSON-LD block, no `data:` URI, no resource from another site (posters and subtitle tracks
+  included), no `autoplay`, no JavaScript file, and the budget of the home page (HTML 20 KB
+  and CSS 12 KB compressed, one font file of 30 KB at most);
 - `npm run lighthouse`: 100 in SEO and accessibility, at least 95 in the other categories,
   mobile and desktop, English and French, at most 200 KB transferred on mobile and no JavaScript.
   A first run of the home page, not counted, warms up Chrome.

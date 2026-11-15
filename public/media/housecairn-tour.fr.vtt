@@ -1,61 +1,195 @@
 WEBVTT
 
-00:00:00.250 --> 00:00:04.400
-HouseCairn planifie l'entretien et les travaux d'une maison, pièce par pièce.
+1
+00:00:01.103 --> 00:00:03.383
+Le filtre. La chaudière. La salle de bain.
 
-00:00:04.750 --> 00:00:06.400
-D'abord, l'essentiel.
+2
+00:00:03.423 --> 00:00:06.043
+Votre maison a mille choses à vous dire.
 
-00:00:06.750 --> 00:00:10.900
-Aujourd'hui : ce qui est en retard, à faire aujourd'hui, à venir. Chacun dans le foyer coche une tâche en un geste.
+3
+00:00:06.083 --> 00:00:07.643
+Découvrez HouseCairn !
 
-00:00:11.250 --> 00:00:14.900
-Chaque pièce a ses équipements, et chaque équipement ses tâches et ses photos.
+4
+00:00:08.810 --> 00:00:10.970
+Fini les post-it sur le frigo.
 
-00:00:15.250 --> 00:00:18.900
-Le calendrier montre ce qui est prévu ; un flux l'envoie dans votre agenda habituel.
+5
+00:00:11.010 --> 00:00:12.830
+Fini les devis perdus.
 
-00:00:19.250 --> 00:00:23.400
-Le budget suit le prévu, l'engagé et le payé, dans une enveloppe pour l'année.
+6
+00:00:12.870 --> 00:00:16.946
+Et fini la question qui tue :
+« On l’a fait quand, la dernière fois ? »
 
-00:00:23.750 --> 00:00:25.900
-Exemple 1 : le détartrage de la machine expresso.
+7
+00:00:16.986 --> 00:00:18.806
+Chaque matin, ce qui compte.
 
-00:00:26.250 --> 00:00:30.400
-Une tâche Détartrage, trois mois après la dernière fois, sur la machine expresso de la cuisine.
+8
+00:00:18.846 --> 00:00:21.026
+En retard, aujourd’hui, à venir.
 
-00:00:30.750 --> 00:00:34.900
-Un filtre à eau à 7,90 € à chaque fois : 31,60 € par an.
+9
+00:00:21.066 --> 00:00:22.646
+Un appui, et c’est fait.
 
-00:00:35.250 --> 00:00:38.900
-Le filtre vient du stock : deux dans le placard.
+10
+00:00:22.686 --> 00:00:24.046
+Pas maintenant ? Reportez-la.
 
-00:00:39.250 --> 00:00:43.400
-Le budget de l'entretien compte la tâche à 31,60 € par an.
+11
+00:00:24.086 --> 00:00:27.846
+Les tâches reviennent toutes seules,
+tous les 3 mois ou chaque printemps.
 
-00:00:43.750 --> 00:00:46.400
-Une fois fait, un geste sur Fait…
+12
+00:00:27.886 --> 00:00:29.886
+Partez d’un modèle,
+c’est encore plus rapide.
 
-00:00:46.750 --> 00:00:51.400
-…prend un filtre dans le stock. Il en reste un : il est signalé bas avant d'en manquer.
+13
+00:00:29.926 --> 00:00:33.526
+Chaque pièce garde sa mémoire, ses photos,
+même la couleur de la peinture.
 
-00:00:51.750 --> 00:00:53.900
-Exemple 2 : refaire la salle de bain.
+14
+00:00:33.566 --> 00:00:37.386
+Chaque appareil a sa propre fiche,
+sa garantie, son contrat d’entretien.
 
-00:00:54.250 --> 00:00:57.900
-Le projet porte ses tâches, datées comme les autres.
+15
+00:00:37.426 --> 00:00:39.746
+Besoin de votre plombier ?
+Un appui, et vous l’appelez.
 
-00:00:58.250 --> 00:01:03.400
-Deux devis de plombier, côte à côte. Celui à 2 850 € est accepté sur la ligne du plombier.
+16
+00:00:39.786 --> 00:00:43.586
+Votre stock sait ce qui reste,
+où c’est rangé, et où en racheter.
 
-00:01:03.750 --> 00:01:06.900
-Les liens d'inspiration restent avec le projet.
+17
+00:00:43.626 --> 00:00:46.326
+Le calendrier voit loin,
+et s’ajoute directement au vôtre.
 
-00:01:07.250 --> 00:01:11.400
-Prévu 4 200 €, engagé 2 850 €, payé 480 €.
+18
+00:00:46.366 --> 00:00:49.786
+L’historique garde tout,
+coût réel compris.
 
-00:01:11.750 --> 00:01:16.400
-Et sur l'année : l'enveloppe de 6 000 € face au prévu, à l'engagé et au payé.
+19
+00:00:49.957 --> 00:00:51.937
+Exemple : la machine expresso.
 
-00:01:16.750 --> 00:01:20.400
-Logiciel libre, auto-hébergé : housecairn.app
+20
+00:00:51.977 --> 00:00:55.317
+Le détartrage revient tous les 3 mois,
+avec son filtre.
+
+21
+00:00:55.357 --> 00:00:56.457
+Vous appuyez sur « Fait ».
+
+22
+00:00:56.497 --> 00:01:00.957
+Le stock passe de 2 à 1, et HouseCairn
+vous prévient : stock bas !
+
+23
+00:01:00.997 --> 00:01:05.677
+7,90 € le filtre, 31,60 € par an,
+déjà dans le budget.
+
+24
+00:01:07.853 --> 00:01:09.433
+Maintenant, la salle de bain.
+
+25
+00:01:09.473 --> 00:01:12.073
+Une douche à l’italienne,
+vos idées gardées en liens.
+
+26
+00:01:12.113 --> 00:01:13.933
+Deux devis, côte à côte.
+
+27
+00:01:13.973 --> 00:01:16.653
+Vous acceptez 2 850 €.
+
+28
+00:01:16.693 --> 00:01:18.513
+Prévu, 4 200 €.
+
+29
+00:01:18.553 --> 00:01:21.153
+Engagé, 2 850 €.
+
+30
+00:01:21.193 --> 00:01:22.953
+Payé, 480 €.
+
+31
+00:01:22.993 --> 00:01:26.473
+Et l’enveloppe de l’année,
+6 000 €, toujours en vue.
+
+32
+00:01:29.658 --> 00:01:30.738
+Et ce n’est pas tout !
+
+33
+00:01:30.778 --> 00:01:33.218
+Une fuite ? Une photo,
+et c’est une tâche.
+
+34
+00:01:33.258 --> 00:01:35.878
+Une étiquette QR sur la chaudière,
+et sa fiche s’ouvre.
+
+35
+00:01:35.918 --> 00:01:38.178
+Invitez votre foyer,
+gérez plusieurs logements.
+
+36
+00:01:38.218 --> 00:01:41.118
+Les rappels arrivent par e-mail,
+Apprise ou push.
+
+37
+00:01:41.158 --> 00:01:42.898
+Home Assistant est branché.
+
+38
+00:01:42.938 --> 00:01:44.978
+Exportez, archivez, restaurez.
+
+39
+00:01:45.018 --> 00:01:46.738
+En anglais et en français.
+
+40
+00:01:46.778 --> 00:01:49.338
+Et l’app mobile marche
+même hors ligne.
+
+41
+00:01:54.573 --> 00:01:57.153
+HouseCairn est un logiciel libre,
+auto-hébergé,
+
+42
+00:01:57.193 --> 00:01:59.773
+et votre maison n’oubliera
+plus jamais rien.
+
+43
+00:01:59.813 --> 00:02:02.393
+Rendez-vous sur housecairn.app !
+

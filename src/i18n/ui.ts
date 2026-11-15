@@ -76,7 +76,7 @@ export interface Dict {
   };
   steps: (Item & { state: StepState })[];
   roadmap: { title: string; description: string; h1: string; lead: string; laterH2: string; later: string[]; followCta: string };
-  video: { title: string; description: string; h1: string; lead: string; label: string; unsupported: string; download: string; subtitles: string; other: string; back: string };
+  video: { title: string; description: string; h1: string; lead: string; label: string; unsupported: string; download: string; subtitles: string; back: string };
   notFound: { title: string; h1: string; text: string; back: string };
   footer: { by: string; source: string; docs: string; roadmap: string; security: string; support: string; noTracking: string };
 }
@@ -183,9 +183,9 @@ export const ui: Record<Lang, Dict> = {
         },
         "tour": {
           "label": "Watch the video tour",
-          "text": "81 seconds, no sound, subtitles in English and French. The video loads only when you play it.",
+          "text": "Two minutes, narrated in English, with English and French subtitles. The video loads only when you play it.",
           "poster": {
-            "alt": "Poster of the video tour: the HouseCairn logo, the title Plan your home's maintenance and renovation work, room by room, a play button and the Today screen."
+            "alt": "Poster of the video tour: the title Your day, sorted, the labels Overdue, Today and Coming up, and the Today screen of the application on a phone."
           }
         }
       },
@@ -265,14 +265,13 @@ export const ui: Record<Lang, Dict> = {
     ],
     video: {
       "title": "Video tour · HouseCairn",
-      "description": "An 81-second tour of HouseCairn: the essentials, then two examples, descaling an espresso machine and redoing a bathroom. No sound, subtitles in English and French.",
+      "description": "A two-minute tour of HouseCairn: the essentials, then two examples, descaling an espresso machine and redoing a bathroom. Narrated in English, with English and French subtitles.",
       "h1": "Video tour",
-      "lead": "The essentials, then the two examples of the home page, in 81 seconds. No sound: the subtitles tell the story. Made from real screenshots of the application, with demo data.",
-      "label": "Video tour of HouseCairn, with subtitles",
+      "lead": "The essentials, then the two examples of the home page, in two minutes. Narrated in English, with English and French subtitles. Filmed in the real application, with demo data.",
+      "label": "Video tour of HouseCairn, narrated in English, with subtitles",
       "unsupported": "Your browser cannot play this video here.",
-      "download": "Download the video (MP4)",
-      "subtitles": "Subtitles (WebVTT)",
-      "other": "Version with the screens in French",
+      "download": "Download the video (MP4, 22 MB)",
+      "subtitles": "Subtitles (WebVTT):",
       "back": "Back to the home page"
     },
     roadmap: {
@@ -397,9 +396,9 @@ export const ui: Record<Lang, Dict> = {
         },
         "tour": {
           "label": "Voir la visite en vidéo",
-          "text": "81 secondes, sans son, sous-titres en français et en anglais. La vidéo ne se charge que si vous la lancez.",
+          "text": "Deux minutes, commentées en anglais, sous-titrées en français et en anglais. La vidéo ne se charge que si vous la lancez.",
           "poster": {
-            "alt": "Affiche de la visite en vidéo : le logo HouseCairn, le titre Planifiez l’entretien et les travaux de votre maison, pièce par pièce, un bouton de lecture et l’écran Aujourd’hui."
+            "alt": "Affiche de la visite en vidéo, en anglais : le titre « Your day, sorted », les étiquettes du jour (en retard, aujourd’hui, à venir) et l’écran Aujourd’hui de l’application sur un téléphone."
           }
         }
       },
@@ -479,14 +478,13 @@ export const ui: Record<Lang, Dict> = {
     ],
     video: {
       "title": "Visite en vidéo · HouseCairn",
-      "description": "Une visite de HouseCairn en 81 secondes : l’essentiel, puis deux exemples, le détartrage d’une machine expresso et la rénovation d’une salle de bain. Sans son, sous-titres en français et en anglais.",
+      "description": "Une visite de HouseCairn en deux minutes : l’essentiel, puis deux exemples, le détartrage d’une machine expresso et la rénovation d’une salle de bain. Commentée en anglais, sous-titrée en français et en anglais.",
       "h1": "Visite en vidéo",
-      "lead": "L’essentiel, puis les deux exemples de l’accueil, en 81 secondes. Sans son : les sous-titres racontent. Faite à partir de vraies captures de l’application, avec des données de démonstration.",
-      "label": "Visite en vidéo de HouseCairn, sous-titrée",
+      "lead": "L’essentiel, puis les deux exemples de l’accueil, en deux minutes. Commentée en anglais, sous-titrée en français. Filmée dans la vraie application, avec des données de démonstration.",
+      "label": "Visite en vidéo de HouseCairn, commentée en anglais, sous-titrée",
       "unsupported": "Votre navigateur ne peut pas lire cette vidéo ici.",
-      "download": "Télécharger la vidéo (MP4)",
-      "subtitles": "Sous-titres (WebVTT)",
-      "other": "Version avec les écrans en anglais",
+      "download": "Télécharger la vidéo (MP4, 22 Mo, en anglais)",
+      "subtitles": "Sous-titres (WebVTT) :",
       "back": "Retour à l’accueil"
     },
     roadmap: {
